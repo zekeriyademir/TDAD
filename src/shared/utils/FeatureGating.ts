@@ -1,0 +1,51 @@
+/**
+ * Feature Gating Utility
+ * Controls access to premium/coming-soon features
+ */
+
+export type FeatureId = 'autopilot';
+
+interface FeatureConfig {
+  enabled: boolean;
+  comingSoon: boolean;
+  comingSoonMessage: string;
+  signupUrl?: string;
+}
+
+const FEATURE_CONFIG: Record<FeatureId, FeatureConfig> = {
+  autopilot: {
+    enabled: false,
+    comingSoon: true,
+    comingSoonMessage: 'Auto-Pilot is in Closed Beta. Join the waitlist for an invite, or check the source code for an easter egg ;)',
+    signupUrl: 'https://tdad.ai'
+  }
+};
+
+export class FeatureGating {
+  static isEnabled(feature: FeatureId): boolean {
+    return FEATURE_CONFIG[feature]?.enabled ?? false;
+  }
+
+  static isComingSoon(feature: FeatureId): boolean {
+    return FEATURE_CONFIG[feature]?.comingSoon ?? false;
+  }
+
+  static getComingSoonMessage(feature: FeatureId): string {
+    return FEATURE_CONFIG[feature]?.comingSoonMessage ?? 'Coming soon!';
+  }
+
+  static getSignupUrl(feature: FeatureId): string | undefined {
+    return FEATURE_CONFIG[feature]?.signupUrl;
+  }
+
+  static getConfig(feature: FeatureId): FeatureConfig | undefined {
+    return FEATURE_CONFIG[feature];
+  }
+}
+
+// Webview-compatible exports (no VS Code dependencies)
+export const isAutopilotComingSoon = (): boolean => FeatureGating.isComingSoon('autopilot');
+
+// Beta code validation
+const _betaKey = atob('VERBRC1CRVRBLTIwMjQ=');
+export const isValidBetaCode = (code: string): boolean => code === _betaKey;

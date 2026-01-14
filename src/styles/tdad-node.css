@@ -1,0 +1,558 @@
+/* TDAD Node Component Styles */
+
+.tdad-node {
+    background: var(--vscode-editor-background);
+    border-radius: 6px;
+    padding: 8px;
+    min-width: 140px;
+    max-width: 200px;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    position: relative;
+}
+
+.tdad-node--selected {
+    box-shadow: 0 0 0 2px var(--vscode-focusBorder),
+                0 4px 12px rgba(0, 120, 212, 0.3) !important;
+    transform: translateY(-1px);
+    z-index: 5;
+}
+
+/* MVP Status Visualization: Grey (Pending), Red (Failing), Green (Passing)
+   Enhanced for "Workflow Obviousness" - clearer backgrounds and stronger borders
+*/
+.tdad-node--pending {
+    border: 2px solid #d3d3d3;
+    background: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tdad-node--tests-ready {
+    border: 2px solid #3b82f6;
+    background: #dbeafe;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.tdad-node--generating {
+    border: 2px solid #f59e0b;
+    background: #fef3c7;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.tdad-node--ready-to-test {
+    border: 2px solid #f59e0b;
+    background: #fef3c7;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.tdad-node--testing {
+    border: 2px solid #9370db;
+    background: #e9d5ff;
+    box-shadow: 0 4px 12px rgba(147, 112, 219, 0.2);
+}
+
+/* SUCCESS State - The "Green" */
+.tdad-node--passed {
+    border: 2px solid #4ade80;
+    background: #dcfce7;
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.25);
+}
+
+/* FAILURE State - The "Red" */
+.tdad-node--failed {
+    border: 2px solid #f87171;
+    background: #fee2e2;
+    box-shadow: 0 4px 12px rgba(248, 113, 113, 0.25);
+}
+
+.tdad-node--default {
+    border: 2px solid #9ca3af;
+    background: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(156, 163, 175, 0.1);
+}
+
+/* Sprint 8: Execution status visual feedback (takes precedence during test runs) */
+.tdad-node--exec-testing { border: 3px solid #ff9800; box-shadow: 0 2px 8px rgba(255, 152, 0, 0.6); background: #fff7ed; animation: pulse-orange 1.5s infinite; }
+.tdad-node--exec-passed { border: 3px solid #4caf50; box-shadow: 0 2px 10px rgba(76, 175, 80, 0.6); background: #dcfce7; }
+.tdad-node--exec-failed { border: 3px solid #f44336; box-shadow: 0 2px 10px rgba(244, 67, 54, 0.7); background: #fee2e2; }
+.tdad-node--exec-skipped { border: 3px solid #9e9e9e; box-shadow: 0 2px 6px rgba(158, 158, 158, 0.4); background: #f5f5f5; opacity: 0.7; }
+
+@keyframes pulse-orange {
+  0%, 100% { box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4); }
+  50% { box-shadow: 0 2px 12px rgba(255, 152, 0, 0.8); }
+}
+
+/* Sprint 9: Ghost Nodes */
+.tdad-node--ghost {
+    opacity: 0.8;
+    border: 2px dashed var(--vscode-descriptionForeground) !important;
+    background: var(--vscode-editor-inactiveSelectionBackground) !important;
+    /* Keep pointer events for navigation/selection */
+}
+
+.tdad-node--ghost .tdad-node__inputs,
+.tdad-node--ghost .tdad-node__outputs {
+    display: none; /* Hide IO handles */
+}
+
+/* Header */
+.tdad-node__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.tdad-node__title {
+    color: var(--vscode-editor-foreground);
+    font-weight: 600;
+    font-size: 12px;
+    margin: 0;
+}
+
+.tdad-node__status-badge {
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.tdad-node__status-badge--pending { background: #d3d3d3; color: #000; }
+.tdad-node__status-badge--tests-ready { background: #3b82f6; color: #fff; }
+.tdad-node__status-badge--generating { background: #f59e0b; color: #fff; }
+.tdad-node__status-badge--ready-to-test { background: #f59e0b; color: #fff; }
+.tdad-node__status-badge--testing { background: #9370db; color: #fff; }
+.tdad-node__status-badge--passed { background: #4ade80; color: #000; font-weight: 700; }
+.tdad-node__status-badge--failed { background: #f87171; color: #fff; font-weight: 700; }
+.tdad-node__status-badge--default { background: #9ca3af; color: #fff; }
+
+/* Sprint 8: Execution status badges */
+.tdad-node__status-badge--exec-testing { background: #ff9800; color: #fff; font-weight: 700; animation: pulse-badge 1.5s infinite; }
+.tdad-node__status-badge--exec-passed { background: #4caf50; color: #fff; font-weight: 700; }
+.tdad-node__status-badge--exec-failed { background: #f44336; color: #fff; font-weight: 700; }
+.tdad-node__status-badge--exec-skipped { background: #9e9e9e; color: #fff; font-weight: 700; }
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Description */
+.tdad-node__description {
+    color: var(--vscode-descriptionForeground);
+    font-size: 10px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+/* Stats */
+.tdad-node__stats {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.tdad-node__stat {
+    background: var(--vscode-badge-background);
+    color: var(--vscode-badge-foreground);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+/* Pre-conditions */
+.tdad-node__preconditions {
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 8px;
+    padding: 6px;
+    background: var(--vscode-list-hoverBackground);
+    border-radius: 4px;
+}
+
+/* Actions */
+.tdad-node__actions {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.tdad-node__button {
+    padding: 4px 8px;
+    font-size: 9px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    transition: opacity 0.2s;
+    flex-grow: 1;
+}
+
+.tdad-node__button:hover {
+    opacity: 0.8;
+}
+
+.tdad-node__button--secondary {
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+}
+
+.tdad-node__button--danger {
+    background: var(--vscode-errorBackground);
+    color: var(--vscode-errorForeground);
+}
+
+/* File path */
+.tdad-node__file-path {
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    font-family: monospace;
+    margin-bottom: 8px;
+    padding: 4px;
+    background: var(--vscode-textCodeBlock-background);
+    border-radius: 3px;
+}
+
+/* Language badge */
+.tdad-node__language {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--vscode-badge-background);
+    color: var(--vscode-badge-foreground);
+    margin-bottom: 8px;
+}
+
+/* Edit form */
+.tdad-node__edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tdad-node__input {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 4px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+}
+
+.tdad-node__input--small {
+    font-size: 10px;
+}
+
+.tdad-node__textarea {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 8px;
+    padding: 4px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    resize: none;
+}
+
+.tdad-node__button-group {
+    display: flex;
+    gap: 4px;
+}
+
+/* Stats and meta info */
+.tdad-node__stat {
+    margin-bottom: 8px;
+    font-size: 10px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.tdad-node__title {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.tdad-node__description {
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+/* Node content wrapper */
+.tdad-node__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Hint text at bottom of node */
+.tdad-node__hint {
+    font-size: 9px;
+    color: var(--vscode-descriptionForeground);
+    text-align: center;
+    padding: 6px 4px 2px;
+    margin-top: 4px;
+    border-top: 1px solid var(--vscode-widget-border);
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Sprint 7: Input/Output containers */
+.tdad-node__inputs,
+.tdad-node__outputs {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    z-index: 10;
+}
+
+.tdad-node__inputs {
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tdad-node__outputs {
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* I/O stats display */
+.tdad-node__io-stats {
+    display: flex;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--vscode-descriptionForeground);
+    margin-top: 4px;
+}
+
+/* Floating Action Buttons - appear on hover/selection */
+.tdad-node__floating-buttons {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    background: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 6px;
+    padding: 4px 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+}
+
+.tdad-node__floating-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tdad-node__floating-btn:hover {
+    background: var(--vscode-list-hoverBackground);
+}
+
+.tdad-node__floating-btn:active {
+    background: var(--vscode-list-activeSelectionBackground);
+}
+
+.tdad-node__floating-btn--delete:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+/* Delete Confirmation Dialog */
+.tdad-node__delete-confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.tdad-node__delete-confirm {
+    background: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 8px;
+    padding: 16px;
+    min-width: 280px;
+    max-width: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tdad-node__delete-confirm-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--vscode-editor-foreground);
+    margin-bottom: 12px;
+}
+
+.tdad-node__delete-confirm-message {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.tdad-node__delete-confirm-message ul {
+    margin: 8px 0 0 0;
+    padding-left: 20px;
+}
+
+.tdad-node__delete-confirm-message li {
+    margin: 4px 0;
+}
+
+.tdad-node__delete-confirm-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.tdad-node__delete-confirm-btn {
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s ease;
+}
+
+.tdad-node__delete-confirm-btn:hover {
+    opacity: 0.9;
+}
+
+.tdad-node__delete-confirm-btn--cancel {
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+}
+
+.tdad-node__delete-confirm-btn--delete {
+    background: #ef4444;
+    color: white;
+}
+
+/* Details section - shown when node is selected */
+.tdad-node__details {
+    margin-top: 4px;
+    padding-top: 8px;
+    border-top: 1px solid var(--vscode-widget-border);
+}
+
+.tdad-node__description {
+    font-size: 10px;
+    color: var(--vscode-descriptionForeground);
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.tdad-node__description--empty {
+    font-style: italic;
+    opacity: 0.6;
+}
+
+.tdad-node__meta-badges {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.tdad-node__docs-count,
+.tdad-node__deps-count {
+    font-size: 10px;
+    color: var(--vscode-descriptionForeground);
+    padding: 2px 6px;
+    background: var(--vscode-badge-background);
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.tdad-node__layer-badge {
+    font-size: 10px;
+    color: var(--vscode-editorInfo-foreground, #3794ff);
+    padding: 2px 6px;
+    background: var(--vscode-badge-background);
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid var(--vscode-editorInfo-foreground, #3794ff);
+}
+
+.tdad-node__layer-badge--global {
+    color: var(--vscode-descriptionForeground);
+    border: 1px solid transparent;
+}
+
+/* 3-Segment Progress Bar on Node - Always Visible */
+.tdad-node__progress-bar-3 {
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    height: 6px;
+    display: flex;
+    gap: 2px;
+    z-index: 5;
+}
+
+.tdad-node__progress-segment {
+    flex: 1;
+    height: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.tdad-node__progress-segment:first-child {
+    border-radius: 0 0 0 6px;
+}
+
+.tdad-node__progress-segment:last-child {
+    border-radius: 0 0 6px 0;
+}
+
+/* Animated shimmer for in-progress segments */
+.tdad-node__progress-segment--animated {
+    animation: segment-shimmer 1.2s ease-in-out infinite;
+    background: linear-gradient(90deg,
+        rgba(245, 158, 11, 0.6) 0%,
+        rgba(245, 158, 11, 1) 50%,
+        rgba(245, 158, 11, 0.6) 100%
+    ) !important;
+    background-size: 200% 100% !important;
+}
+
+@keyframes segment-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* 3-Segment Progress Bar in Floating Buttons */
+.tdad-node__floating-progress-3 {
+    display: flex;
+    gap: 2px;
+    margin-right: 8px;
+}
+
+.tdad-node__floating-segment {
+    width: 18px;
+    height: 10px;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}

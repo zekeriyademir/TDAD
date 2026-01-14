@@ -1,0 +1,423 @@
+/* Canvas App Component Styles */
+
+.canvas-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Main container */
+.canvas-app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+/* Ensure ReactFlow takes full height */
+.canvas-app .react-flow {
+    width: 100%;
+    height: 100%;
+}
+
+/* ReactFlow wrapper must take full height */
+.react-flow__renderer {
+    width: 100%;
+    height: 100%;
+}
+
+/* Loading state */
+.canvas-app__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--vscode-editor-background);
+    color: var(--vscode-editor-foreground);
+}
+
+.canvas-app__loading-text {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.canvas-app__loading-spinner {
+    border: 4px solid var(--vscode-input-border);
+    border-top: 4px solid var(--vscode-button-background);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error state */
+.canvas-app__error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--vscode-editor-background);
+    color: var(--vscode-editor-foreground);
+}
+
+.canvas-app__error-text {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.canvas-app__error-button {
+    padding: 10px 20px;
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.canvas-app__error-button:hover {
+    opacity: 0.9;
+}
+
+/* Breadcrumb container */
+.canvas-app__breadcrumb-container {
+    margin-top: 8px;
+}
+
+/* Modal overlay */
+.canvas-app__modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.canvas-app__modal-overlay--high-z {
+    z-index: 2100;
+}
+
+/* Modal container */
+.canvas-app__modal {
+    background: var(--vscode-editor-background);
+    color: var(--vscode-editor-foreground);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 8px;
+    width: 600px;
+    max-width: 90vw;
+    max-height: 85vh;
+    overflow: auto;
+}
+
+.canvas-app__modal--wide {
+    width: 800px;
+    max-width: 95vw;
+    max-height: 90vh;
+}
+
+/* Modal header */
+.canvas-app__modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.canvas-app__modal-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.canvas-app__modal-title {
+    margin: 0;
+}
+
+.canvas-app__modal-subtitle {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.canvas-app__modal-close {
+    background: transparent;
+    color: var(--vscode-editor-foreground);
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.canvas-app__modal-close:hover {
+    opacity: 0.7;
+}
+
+/* Modal content */
+.canvas-app__modal-content {
+    padding: 12px;
+}
+
+/* Settings sections */
+.canvas-app__settings-section {
+    margin-bottom: 16px;
+}
+
+.canvas-app__settings-heading {
+    margin-top: 0;
+}
+
+.canvas-app__settings-description {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 8px;
+}
+
+/* API Key cards */
+.canvas-app__api-keys-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.canvas-app__api-key-card {
+    background: var(--vscode-input-background);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.canvas-app__api-key-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.canvas-app__api-key-provider {
+    font-weight: 600;
+}
+
+.canvas-app__api-key-status {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.canvas-app__api-key-input {
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    font-family: monospace;
+}
+
+.canvas-app__api-key-actions {
+    display: flex;
+    gap: 4px;
+}
+
+/* Model registry */
+.canvas-app__model-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 80px 80px auto;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.canvas-app__model-select {
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.canvas-app__model-input-group {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.canvas-app__model-input {
+    flex: 1;
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.canvas-app__model-fetch-button {
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.canvas-app__model-fetch-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Retry strategy */
+.canvas-app__retry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+/* Button styles */
+.canvas-app__button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.canvas-app__button--primary {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+}
+
+.canvas-app__button--primary:hover {
+    opacity: 0.9;
+}
+
+.canvas-app__button--secondary {
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+}
+
+.canvas-app__button--secondary:hover {
+    opacity: 0.9;
+}
+
+.canvas-app__button--danger {
+    background: var(--vscode-errorBackground);
+    color: var(--vscode-errorForeground);
+}
+
+.canvas-app__button--danger:hover {
+    opacity: 0.9;
+}
+
+/* Modal footer actions */
+.canvas-app__modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+/* Code preview specific */
+.canvas-app__code-preview-toolbar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.canvas-app__code-preview-label {
+    font-size: 12px;
+}
+
+.canvas-app__code-preview-select {
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.canvas-app__code-preview-textarea {
+    width: 100%;
+    height: 60vh;
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 8px;
+    resize: none;
+}
+
+/* Inline utility classes */
+.canvas-app__margin-top-8 {
+    margin-top: 8px;
+}
+
+.canvas-app__margin-bottom-16 {
+    margin-bottom: 16px;
+}
+
+.canvas-app__margin-top-0 {
+    margin-top: 0;
+}
+
+.canvas-app__text-description {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 8px;
+}
+
+.canvas-app__text-description--sm {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 6px;
+}
+
+.canvas-app__model-iterations-input {
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.canvas-app__model-remove-button {
+    background: var(--vscode-errorBackground);
+    color: var(--vscode-errorForeground);
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.canvas-app__model-add-button {
+    padding: 8px 12px;
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.canvas-app__strategy-input {
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    padding: 8px;
+}

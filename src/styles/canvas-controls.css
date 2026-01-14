@@ -1,0 +1,312 @@
+/* Canvas Controls - Glassmorphic Toolbar (matching BottomActionBar) */
+
+/* Row container - horizontal layout for Auto + Main Controls */
+.canvas-controls__row {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between Auto and Main pills */
+}
+
+/* Auto Run Container - Separate glassmorphic pill */
+.canvas-controls__auto-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 100px;
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 6px;
+}
+
+/* Auto segment button */
+.canvas-controls__segment {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    color: #333333;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    outline: none;
+    height: 36px;
+}
+
+.canvas-controls__segment:hover {
+    background: rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-controls__segment:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Auto variant - Green rocket for automation */
+.canvas-controls__segment--auto {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(22, 163, 74, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.canvas-controls__segment--auto:hover {
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+    box-shadow: 0 6px 20px rgba(22, 163, 74, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Active state - Running animation */
+.canvas-controls__segment--active {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    box-shadow: 0 4px 16px rgba(217, 119, 6, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.canvas-controls__segment--active:hover {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    box-shadow: 0 6px 20px rgba(217, 119, 6, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 4px 16px rgba(217, 119, 6, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
+    50% { box-shadow: 0 4px 24px rgba(217, 119, 6, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
+}
+
+/* Coming Soon variant - Muted purple/gray with lock icon */
+.canvas-controls__segment--coming-soon {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    opacity: 0.85;
+    cursor: default;
+}
+
+.canvas-controls__segment--coming-soon:hover {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    opacity: 1;
+}
+
+.canvas-controls__segment--coming-soon:disabled {
+    opacity: 0.85;
+    cursor: default;
+}
+
+/* Main Controls Pill */
+.canvas-controls {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 100px; /* Pill shape */
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 6px;
+    gap: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Primary Action Button (Add Feature, Blueprint) */
+.canvas-controls__btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    color: #333333;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    outline: none;
+    height: 36px;
+}
+
+.canvas-controls__btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+    color: #111111;
+    border-color: rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-controls__btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Primary variant - Strong blue CTA */
+.canvas-controls__btn--primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.canvas-controls__btn--primary:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    color: #ffffff;
+}
+
+/* Secondary variant - Subtle teal/cyan for files */
+.canvas-controls__btn--secondary {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    border: 1px solid rgba(6, 182, 212, 0.5);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(8, 145, 178, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.canvas-controls__btn--secondary:hover {
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    color: #ffffff;
+}
+
+/* Danger variant */
+.canvas-controls__btn--danger {
+    color: #dc2626;
+}
+
+.canvas-controls__btn--danger:hover {
+    background: rgba(220, 38, 38, 0.1);
+    border-color: rgba(220, 38, 38, 0.3);
+    color: #b91c1c;
+}
+
+/* Disabled variant */
+.canvas-controls__btn--disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.canvas-controls__btn--disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Separator */
+.canvas-controls__separator {
+    width: 1px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 4px;
+}
+
+/* Info text */
+.canvas-controls__info {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 11px;
+    color: #666666;
+    white-space: nowrap;
+}
+
+/* Icon */
+.canvas-controls__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+/* Icon-only buttons - compact padding for icon-only display */
+.canvas-controls__btn--icon-only {
+    padding: 8px 12px;
+}
+
+/* MiniMap Fix - Ensure visibility and proper styling */
+.react-flow__minimap {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden;
+}
+
+.react-flow__minimap-mask {
+    fill: rgba(59, 130, 246, 0.15) !important;
+}
+
+.react-flow__minimap-node {
+    fill: rgba(59, 130, 246, 0.6) !important;
+    stroke: rgba(37, 99, 235, 0.8) !important;
+    stroke-width: 1 !important;
+}
+
+/* ReactFlow Controls - Match glassmorphic style */
+.react-flow__controls {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+}
+
+.react-flow__controls-button {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    color: #333333 !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.15s ease !important;
+}
+
+.react-flow__controls-button:last-child {
+    border-bottom: none !important;
+}
+
+.react-flow__controls-button:hover {
+    background: rgba(0, 0, 0, 0.06) !important;
+    color: #111111 !important;
+}
+
+.react-flow__controls-button svg {
+    width: 14px !important;
+    height: 14px !important;
+    fill: currentColor !important;
+}
+

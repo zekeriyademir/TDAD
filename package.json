@@ -1,0 +1,322 @@
+{
+  "name": "tdad",
+  "displayName": "TDAD - Test-Driven AI Development",
+  "description": "Build apps through workflow canvas with test-driven multi-model AI code generation",
+  "version": "0.0.1",
+  "publisher": "tdad",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tdad/tdad-vscode-extension.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tdad.openCanvas",
+        "title": "TDAD: Open Workflow Canvas"
+      },
+      {
+        "command": "tdad.createNode",
+        "title": "TDAD: Create New Node"
+      },
+      {
+        "command": "tdad.runTests",
+        "title": "TDAD: Run Tests for Node"
+      },
+      {
+        "command": "tdad.checkConfig",
+        "title": "TDAD: Check Configuration"
+      },
+      {
+        "command": "tdad.runAutomatedTests",
+        "title": "TDAD: Run All Automated Tests"
+      },
+      {
+        "command": "tdad.saveWorkflow",
+        "title": "TDAD: Save Workflow"
+      },
+      {
+        "command": "tdad.listWorkflows",
+        "title": "TDAD: List Workflows"
+      },
+      {
+        "command": "tdad.saveApiKey",
+        "title": "TDAD: Save API Key"
+      },
+      {
+        "command": "tdad.testAIConnection",
+        "title": "TDAD: Test AI Connection"
+      },
+      {
+        "command": "tdad.showSettings",
+        "title": "TDAD: Show Settings"
+      },
+      {
+        "command": "tdad.updateModels",
+        "title": "TDAD: Update AI Models"
+      },
+      {
+        "command": "tdad.listProviderModels",
+        "title": "TDAD: List Provider Models"
+      },
+      {
+        "command": "tdad.setOpenAIOrgId",
+        "title": "TDAD: Set OpenAI Org ID"
+      },
+      {
+        "command": "tdad.scanWorkspace",
+        "title": "TDAD: Scan Workspace and Import Files as Nodes"
+      },
+      {
+        "command": "tdad.resetDatabase",
+        "title": "TDAD: Reset Database (DEV)"
+      },
+      {
+        "command": "tdad.migrateFeatureMap",
+        "title": "TDAD: Migrate Feature Map to Hierarchical Structure"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "tdad.workflowEditor",
+        "displayName": "TDAD Workflow",
+        "selector": [
+          {
+            "filenamePattern": "*.tdad"
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "TDAD",
+      "properties": {
+        "tdad.models": {
+          "type": "array",
+          "default": [],
+          "description": "AI models configuration for code generation",
+          "items": {
+            "type": "object",
+            "properties": {
+              "provider": {
+                "type": "string",
+                "enum": [
+                  "openai",
+                  "anthropic",
+                  "google",
+                  "cohere"
+                ],
+                "description": "AI provider"
+              },
+              "model": {
+                "type": "string",
+                "description": "Model name"
+              },
+              "apiKey": {
+                "type": "string",
+                "description": "API key for the provider"
+              },
+              "iterations": {
+                "type": "number",
+                "default": 3,
+                "description": "Number of iterations"
+              }
+            }
+          }
+        },
+        "tdad.strategy": {
+          "type": "object",
+          "default": {
+            "mode": "sequential",
+            "order": []
+          },
+          "description": "Retry/orchestration strategy for model attempts"
+        },
+        "tdad.langchain.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use LangChain for code generation (recommended)"
+        },
+        "tdad.generation.language": {
+          "type": "string",
+          "default": "javascript",
+          "enum": [
+            "javascript",
+            "typescript"
+          ],
+          "description": "Preferred language for generated code files (preview save)"
+        },
+        "tdad.openai.orgId": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI Organization ID (optional)"
+        },
+        "tdad.project.techStack": {
+          "type": "string",
+          "default": "typescript-node",
+          "description": "Tech stack for the project (e.g., typescript-node, python, go)"
+        },
+        "tdad.project.techStackCustom": {
+          "type": "string",
+          "default": "",
+          "description": "Custom tech stack specification if 'custom' is selected"
+        },
+        "tdad.project.projectType": {
+          "type": "string",
+          "default": "web-app",
+          "description": "Project architecture type (e.g., web-app, api-service)"
+        },
+        "tdad.project.projectTypeCustom": {
+          "type": "string",
+          "default": "",
+          "description": "Custom project type specification if 'custom' is selected"
+        },
+        "tdad.project.database": {
+          "type": "string",
+          "default": "postgresql",
+          "description": "Database used in the project"
+        },
+        "tdad.project.databaseCustom": {
+          "type": "string",
+          "default": "",
+          "description": "Custom database specification if 'custom' is selected"
+        },
+        "tdad.project.sourceRoot": {
+          "type": "string",
+          "default": "src/",
+          "description": "Root directory for source code"
+        },
+        "tdad.project.docsRoot": {
+          "type": "string",
+          "default": "docs/",
+          "description": "Root directory for documentation"
+        },
+        "tdad.testTypes": {
+          "type": "array",
+          "default": ["ui", "api"],
+          "items": {
+            "type": "string",
+            "enum": ["ui", "api"]
+          },
+          "description": "Types of tests to generate (Playwright only: UI and API tests)"
+        },
+        "tdad.testCoverage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include code coverage in test runs"
+        },
+        "tdad.test.urls": {
+          "type": "object",
+          "default": {
+            "ui": "http://localhost:3000"
+          },
+          "description": "URLs for testing. Keys become Playwright projects with baseURL (e.g. frontend, backend, api). Saved to playwright.config.js.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "tdad.test.workers": {
+          "type": "number",
+          "default": 1,
+          "minimum": 1,
+          "maximum": 16,
+          "description": "Number of Playwright workers for parallel test execution (default: 1 to prevent race conditions)"
+        },
+        "tdad.agent.cli.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic CLI agent triggering for hands-free automation"
+        },
+        "tdad.agent.cli.command": {
+          "type": "string",
+          "default": "claude \"Read .tdad/NEXT_TASK.md and execute the task. When done, write DONE to .tdad/AGENT_DONE.md\"",
+          "description": "CLI command to trigger the AI agent. Use {file} for task file path, {prompt} for default prompt. Examples: 'claude \"{prompt}\"', 'aider --message \"{prompt}\"'"
+        },
+        "tdad.agent.cli.permissionFlags": {
+          "type": "object",
+          "default": {
+            "claude": { "dangerouslySkipPermissions": false },
+            "aider": { "yesAlways": false, "autoCommit": false },
+            "codex": { "autoApprove": false }
+          },
+          "description": "CLI-specific permission flags for hands-free automation"
+        },
+        "tdad.betaAccessCode": {
+          "type": "string",
+          "default": "",
+          "description": "Enter your Closed Beta access code here to unlock Auto-Pilot."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && npm run build-webview && npm run copy-media && npm run copy-grammars && npm run copy-prompts",
+    "copy-prompts": "node -e \"const fs=require('fs'),p=require('path');const d='out/core/prompts';fs.mkdirSync(d,{recursive:true});fs.readdirSync('src/core/prompts').filter(f=>f.endsWith('.md')).forEach(f=>fs.copyFileSync(p.join('src/core/prompts',f),p.join(d,f)));console.log('Copied prompts')\"",
+    "build-webview": "vite build",
+    "dev-webview": "node scripts/dev-webview.js",
+    "dev-webview-direct": "vite",
+    "copy-media": "node scripts/copy-media.js",
+    "copy-grammars": "if not exist out\\media\\grammars mkdir out\\media\\grammars && if exist media\\grammars xcopy media\\grammars\\*.wasm out\\media\\grammars\\ /Y",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "assign-test-ids": "node scripts/assign-test-ids.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^18.11.18",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@types/uuid": "^10.0.0",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vscode/test-electron": "^2.2.2",
+    "@vscode/vsce": "^2.29.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^7.1.2",
+    "electron-rebuild": "^3.2.9",
+    "eslint": "^8.31.0",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "vite": "^5.1.0",
+    "vsce": "^2.15.0",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "@langchain/anthropic": "^1.0.0",
+    "@langchain/cohere": "^1.0.0",
+    "@langchain/core": "^1.0.1",
+    "@langchain/google-genai": "^1.0.0",
+    "@langchain/openai": "^1.0.0",
+    "@reactflow/background": "^11.3.14",
+    "@reactflow/controls": "^11.2.14",
+    "@reactflow/core": "^11.11.4",
+    "@reactflow/minimap": "^11.7.14",
+    "axios": "^1.6.0",
+    "handlebars": "^4.7.8",
+    "langchain": "^1.0.1",
+    "llamaindex": "^0.12.0",
+    "openai": "^4.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "reactflow": "^11.11.4",
+    "uuid": "^13.0.0"
+  }
+}
