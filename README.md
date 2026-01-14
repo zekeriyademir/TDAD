@@ -233,83 +233,47 @@ When a test fails, TDAD provides the "Golden Packet" to help the AI fix it.
 The Golden Packet contains these sections:
 
 1.  **SYSTEM RULES: FIX MODE** - AI instructions emphasizing:
-    - Focus on the Dynamic Trace (execution context)
+    - Read specs first, fix APP not tests
+    - Use trace data to find WHERE to fix (not WHAT to do)
     - Call dependency actions directly instead of re-implementing
-    - Minimal intervention - fix only broken logic
+    - Never change test expectations to match broken app behavior
 
 2.  **Scaffolded Files** - Paths to read:
     - Feature Spec (`.feature`)
     - Action File (`.action.js`)
     - Test File (`.test.js`)
 
-4.  **Dependencies (Upstream Features)** - For each dependency:
+3.  **Project Context** - Tech stack detected from `package.json` (React, Next.js, Playwright, etc.)
+
+4.  **Dependencies** - For each upstream feature:
     - Action file path for imports
     - Import statement template
-    - Function signature and return value structure
+    - Function signature
 
-5.  **Context Files** - Optional documentation to guide AI implementation:
-    - User selects relevant files via the UI (API specs, design docs, business rules)
-    - These files are injected into the prompt as reference material
-    - **Why helpful:** Prevents hallucination of fake error messages or API responses
-    - **Example:** If you link `api-spec.yaml`, the AI knows the real status codes (e.g., "API returns 401 for invalid tokens, not 403")
-    - **Result:** AI generates tests with accurate assertions that match your actual system behavior
+5.  **Documentation Context** - Optional files linked by user:
+    - API specs, design docs, business rules
+    - Prevents hallucination of fake endpoints/error messages
+    - Example: If you link `api-spec.yaml`, AI knows real status codes
 
-6.  **TEST RESULTS** - Formatted results:
-    - ✅ Passed tests (count + names)
-    - ❌ Failed tests (count + names + full error messages)
-    - **Code Snippet** - Lines around the failing assertion for surgical precision:
-      ```
-      ❌ Failed at user-registration.test.js:64
-         62│   await page.getByRole('radio', { name: 'Female' }).click();
-         63│   await page.getByRole('button', { name: 'Register' }).click();
-      >> 64│   expect(await page.locator('.success-message').isVisible()).toBe(true);
-         65│ });
-      ```
-    - Summary line
+6.  **Previous Fix Attempts** - What was already tried (automated mode only):
+    - Files modified
+    - Changes made
+    - Why it failed
 
-7.  **Dynamic Trace (Execution Context)** - Detailed trace data from test execution:
-    - **Trace File Reference** - Complete trace saved to `.tdad/debug/[folder]/[node-name]/trace-files/trace-{test-name}.json`
-    - **Trace File Contents** (JSON structure):
-      ```json
-      {
-        "testTitle": "[UI-004] Handle missing manifest file",
-        "timestamp": "2026-01-13T08:04:03.358Z",
-        "status": "failed",
-        "errorMessage": "expect(locator).toBeVisible() failed...",
-        "callStack": [{ "file": "...", "line": 117, "column": 40 }],
-        "apiRequests": [{ "method": "GET", "url": "/api/...", "status": 200, "request": {...}, "response": {...} }],
-        "consoleLogs": [{ "type": "error", "text": "...", "location": "..." }],
-        "pageErrors": [{ "message": "...", "stack": "..." }],
-        "actionResult": null,
-        "domSnapshot": { "type": "html", "url": "...", "content": "..." },
-        "screenshotPath": ".tdad/debug/.../screenshots/ui-004-handle-missing-manifest-file.png"
-      }
-      ```
-    - **Frontend Source Files** - Files executed during test (from coverage data)
-    - **Backend API Calls** - Method, URL, Status with inline ✅/❌ indicators
-    - **Browser Console** - Errors and warnings with source location
-    - **Uncaught JavaScript Errors** - Page crash errors with stack traces
-    - **Debug Files Location** - All debug artifacts organized per node:
-      - `.tdad/debug/generate-bdd.md` - Last BDD generation prompt
-      - `.tdad/debug/generate-tests.md` - Last test generation prompt
-      - `.tdad/debug/golden-packet.md` - Last fix context
-      - `.tdad/debug/[folder]/[node]/screenshots/*.png` - Visual evidence per test
-      - `.tdad/debug/[folder]/[node]/trace-files/trace-*.json` - Complete trace per test
+7.  **TEST RESULTS** - The critical debugging data:
+    - ✅ Passed tests / ❌ Failed tests with error messages
+    - **Code Snippet** - Lines around the failing assertion
+    - **Trace File** - Complete trace saved to `.tdad/debug/{workflow}/{node}/trace-files/trace-{test-name}.json`
+    - **API Calls** - Method, URL, Status with ✅/❌ indicators
+    - **Console Logs** - Errors and warnings with source location
+    - **Page Errors** - Uncaught JavaScript exceptions
+    - **Screenshots** - Visual evidence at `.tdad/debug/{workflow}/{node}/screenshots/{test-name}.png`
+    - **DOM Snapshot** - Accessibility tree or HTML of page state at failure
 
-8.  **DOM Snapshot ("Crime Scene Photo")** - The rendered page state at failure:
-    - **Accessibility Tree** (preferred) - Clean view of interactive elements:
-      ```yaml
-      - heading "Create Account"
-      - textbox "Email" [value: "test@example.com"]
-      - textbox "Password"
-      - button "Register" (disabled)  ← AI sees: button is disabled!
-      - alert "Password is required"  ← AI sees: validation error showing!
-      ```
-    - **Why This Helps:**
-      - Without snapshot: AI guesses "wrong selector?"
-      - With snapshot: AI sees the spinner is showing, button doesn't exist yet
-    - Maps directly to Playwright's user-facing locators (`getByRole`, `getByLabel`)
-    - Falls back to truncated HTML if accessibility API unavailable
+8.  **Your Task** - Clear instructions: Read specs → Use trace → Fix APP → Verify
+
+9.  **Checklist** - Pre-flight checks before submitting fixes
+
 
 ### 6. The "Orchestrator" (Test Runner)
 TDAD runs the loop.
