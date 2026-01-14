@@ -13,6 +13,7 @@ vite.config.ts
 !README.md
 !LICENSE
 !out/core/prompts/*.md
+!templates/**
 src/**
 scripts/**
 tests/**

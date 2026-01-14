@@ -297,8 +297,9 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./ && npm run build-webview && npm run copy-media && npm run copy-grammars && npm run copy-prompts",
+    "compile": "tsc -p ./ && npm run build-webview && npm run copy-media && npm run copy-grammars && npm run copy-prompts && npm run copy-templates",
     "copy-prompts": "node -e \"const fs=require('fs'),p=require('path');const d='out/core/prompts';fs.mkdirSync(d,{recursive:true});fs.readdirSync('src/core/prompts').filter(f=>f.endsWith('.md')).forEach(f=>fs.copyFileSync(p.join('src/core/prompts',f),p.join(d,f)));console.log('Copied prompts')\"",
+    "copy-templates": "node -e \"const fs=require('fs'),p=require('path');const d='templates';const o='out/../templates';if(!fs.existsSync(o))fs.mkdirSync(o,{recursive:true});fs.readdirSync(d).forEach(f=>fs.copyFileSync(p.join(d,f),p.join(o,f)));console.log('Copied templates')\"",
     "build-webview": "vite build",
     "dev-webview": "node scripts/dev-webview.js",
     "dev-webview-direct": "vite",

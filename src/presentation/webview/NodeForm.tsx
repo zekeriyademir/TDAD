@@ -152,7 +152,7 @@ const NodeForm: React.FC<NodeFormProps> = ({
 
   const submitLabel = isEditing
     ? (isFolderMode ? 'Update Folder' : 'Update Feature')
-    : (isFolderMode ? '📁 Create Folder' : '✨ Create & Run TDD');
+    : (isFolderMode ? '📁 Create Folder' : 'Create New Feature');
 
   return (
     <div className="node-form">

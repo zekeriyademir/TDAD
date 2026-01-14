@@ -13,7 +13,18 @@
 .vscode/tdad.lancedb/
 
 # Logs
+.tdad/logs/
 .tdad-logs/
+
+# ====================
+# TDAD Runtime (Temporary - DO NOT COMMIT)
+# ====================
+
+# Automation runtime state (temporary)
+.tdad/automation-state.json
+
+# Debug prompt files (temporary)
+.tdad/debug/
 
 # ====================
 # TDAD Source of Truth (MUST COMMIT)

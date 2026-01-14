@@ -4,13 +4,18 @@
  */
 
 import * as vscode from 'vscode';
+import * as path from 'path';
+import * as fs from 'fs';
 import { logCanvas, logError } from '../../shared/utils/Logger';
 
 export class TDADBootstrap {
     private workspaceFolder: vscode.WorkspaceFolder;
+    private extensionPath: string;
 
-    constructor(workspaceFolder: vscode.WorkspaceFolder) {
+    constructor(workspaceFolder: vscode.WorkspaceFolder, extensionPath?: string) {
         this.workspaceFolder = workspaceFolder;
+        // Get extension path from context or use workspace folder as fallback
+        this.extensionPath = extensionPath || workspaceFolder.uri.fsPath;
     }
 
     /**
@@ -113,7 +118,41 @@ See the TDAD extension documentation for details.
     }
 
     /**
-     * Update or create .gitignore with TDAD rules
+     * Load TDAD gitignore rules from template file
+     */
+    private loadGitignoreTemplate(): string {
+        // The templates folder is at the extension root (copied during build)
+        const templatePath = path.join(this.extensionPath, 'templates', '.gitignore.tdad');
+
+        if (!fs.existsSync(templatePath)) {
+            throw new Error(`TDAD gitignore template not found at: ${templatePath}`);
+        }
+
+        const fullTemplate = fs.readFileSync(templatePath, 'utf-8');
+
+        // Extract only TDAD-specific rules (lines starting with # TDAD or after)
+        // We want the cache, runtime, and source of truth sections
+        const lines = fullTemplate.split('\n');
+        const tdadSectionStart = lines.findIndex(line => line.includes('# TDAD Cache'));
+        const tdadSectionEnd = lines.findIndex((line, idx) =>
+            idx > tdadSectionStart && line.includes('# Node.js')
+        );
+
+        if (tdadSectionStart === -1) {
+            throw new Error('TDAD section not found in template');
+        }
+
+        // Extract TDAD-specific sections
+        const tdadLines = tdadSectionEnd === -1
+            ? lines.slice(tdadSectionStart)
+            : lines.slice(tdadSectionStart, tdadSectionEnd);
+
+        return '\n# ====================\n# TDAD (Test-Driven AI Development)\n# ====================\n\n' +
+               tdadLines.join('\n').trim();
+    }
+
+    /**
+     * Update or create .gitignore with TDAD rules from template
      */
     private async updateGitignore(): Promise<void> {
         const gitignorePath = vscode.Uri.joinPath(this.workspaceFolder.uri, '.gitignore');
@@ -134,31 +173,19 @@ See the TDAD extension documentation for details.
             return;
         }
 
-        // Append TDAD rules
-        const tdadRules = `
+        // Load rules from template file
+        let tdadRules: string;
+        try {
+            tdadRules = this.loadGitignoreTemplate();
+        } catch (error) {
+            logError('BOOTSTRAP', 'Failed to load gitignore template', error);
+            throw error;
+        }
 
-# ====================
-# TDAD (Test-Driven AI Development)
-# ====================
-
-# Cache files (rebuildable - do not commit)
-.vscode/tdad.db
-.vscode/tdad.db-shm
-.vscode/tdad.db-wal
-.vscode/tdad.lancedb/
-
-# Runtime data (do not commit)
-.tdad/logs/
-
-# Source of truth (MUST commit)
-# .tdad/workflows/ - feature definitions and test files
-# .tdad/metadata/ - features and tests
-`;
-
-        const newContent = existingContent + tdadRules;
+        const newContent = existingContent + '\n' + tdadRules + '\n';
 
         await vscode.workspace.fs.writeFile(gitignorePath, Buffer.from(newContent, 'utf8'));
-        logCanvas('Updated .gitignore with TDAD rules');
+        logCanvas('Updated .gitignore with TDAD rules from template');
 
         // Show diff to user
         const choice = await vscode.window.showInformationMessage(

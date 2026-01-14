@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
         // Initialize TDAD structure if needed
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
         if (workspaceFolder) {
-            const bootstrap = new TDADBootstrap(workspaceFolder);
+            const bootstrap = new TDADBootstrap(workspaceFolder, context.extensionPath);
             bootstrap.isInitialized().then(async (initialized) => {
                 if (!initialized) {
                     logExtension('TDAD not initialized in workspace, prompting user...');
