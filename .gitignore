@@ -18,3 +18,4 @@ media/canvas-react.js
 # Claude Code local settings (contains local file paths)
 .claude/settings.local.json
 tmpclaude-*
+CLAUDE.md
