@@ -140,12 +140,12 @@ TDAD does not call OpenAI/Claude for code generation. Instead, it serves as a **
 *   Click **"1. BDD"** → Copies BDD generation prompt to clipboard
 *   Paste into your AI agent → AI writes the `.feature` file (Gherkin spec)
 
-**Step 2: 🧪 Tests** (Enabled ONLY if BDD exists)
+**Step 2: Tests** (Enabled ONLY if BDD exists)
 *   Click **"2. Tests"** → Scaffolds `.action.js` + `.test.js` AND copies test generation prompt
 *   System injects: Feature Spec, Dependency imports, Documentation Context, File paths
 *   Paste into your AI agent → AI implements action logic and test assertions
 
-**Step 3: ▶️ Run** (Enabled ONLY if Tests exist)
+**Step 3: Run** (Enabled ONLY if Tests exist)
 *   Click **"3. Run"** → Executes `npx playwright test` for this node
 *   **Captures automatically** (via tdad-fixtures.js):
     - API requests/responses
@@ -156,7 +156,7 @@ TDAD does not call OpenAI/Claude for code generation. Instead, it serves as a **
     - Coverage data
 *   Node turns **Green** (passed) or **Red** (failed)
 
-**Step 4: 🔧 Fix** (Enabled ONLY if Tests exist)
+**Step 4: Fix** (Enabled ONLY if Tests exist)
 *   Click **"4. Fix"** → Assembles Golden Packet with trace data + copies to clipboard
 *   Paste into your AI agent → AI reads exact error context and fixes the issue
 *   Return to **Step 3** and repeat until Green
