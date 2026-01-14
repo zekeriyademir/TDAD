@@ -4,52 +4,53 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**TDAD** (Test-Driven AI Development) is the "Supervisor" for your AI coding agent.
+**TDAD** (Test-Driven AI Development) upgrades your AI from a chaotic code generator into a disciplined engineer. local-first, and zero API calls—you control exactly what leaves your machine.
 
 We all know the feeling: You ask for a feature, the AI generates 5 files, and... nothing works. The imports are wrong, the logic is hallucinated, and you spend the next hour debugging "magic" code.
 
-TDAD solves this by forcing the AI to work like a real engineer: **Test-Driven Development.**
-It doesn't just "write code." It enforces a strict cycle:
-1.  **Plan:** Visually map features on a dependency canvas.
-2.  **Specify:** Define behavior with standard BDD (Gherkin) specs.
-3.  **Verify:** Scaffold and run Playwright tests automatically.
-4.  **Debug:** Fix issues instantly using "Golden Packet" execution traces.
+TDAD enforces a **Plan → Spec → Test → Fix** cycle where automated tests validate every line of code, ensuring your AI delivers working software, not just snippets.
 
-> 📸 **Note:** Add screenshot/demo GIF here showing the Canvas UI and 4-step workflow in action
+**Note:** Add screenshot/demo GIF here showing the Canvas UI and 4-step workflow in action
 
 **Quick Links:** [Installation](#installation) • [Getting Started](#getting-started) • [Features](#features) • [Contributing](#contributing) • [Community](#community)
 
 ----
 
-## The Solution: TDAD (The Guardrails)
+## Why This Matters (The Real Value)
 
-TDAD is the **Traffic Controller** that stops the AI from crashing. It solves the "Last Mile" problem by inverting the workflow:
+Most AI coding tools fail because they lack **context** and **structure**. TDAD fixes this by enforcing a professional engineering workflow:
 
-> 📸 **GIF:** Show the "Interactive Workflow" loop: Click BDD -> Paste -> Click Test -> Paste -> Click Fix -> Paste. This demonstrates the core value proposition.
+### 1. Plan like a Project Manager (The Canvas)
+Just like [n8n](https://n8n.io/) manages data workflows, TDAD's **Canvas** manages your feature workflows.
+*   **Business Logic:** You provide the "Idea" or "Existing Codebase", and **TDAD generates the prompt** for the AI to build your entire business logic in Canvas.
+*   **Visual Dependencies:** See exactly how Feature A connects to Feature B (e.g., "Checkout" depends on "Login").
+*   **Logical Flow:** The graph represents the **business logic** and user flow, allowing you to visualize and manage your project's features and status.
 
-*   **🔐 Privacy First:** No code leaves your machine unless you paste it yourself.
+### 2. Generate Requirements (BDD)
+Most AI code fails because the prompt was vague. Think of this as defining your **Jira Tickets** clearly with all the acceptance criterias before starting work.
+*   **AI-Driven Specs:** You don't write specs manually. TDAD generates a specialized prompt, and your AI agent writes the **Gherkin requirements** for you.
+*   **Clear Contract:** The AI knows exactly what to build before writing a single line of code.
+"
+### 3. Generate Automated Tests
+We generate the tests *before* the implementation.
+*   **TDD Automation:** TDAD scaffolds the files and guides the AI to write comprehensive Playwright tests derived directly from your requirements.
+*   **The Gatekeeper:** These tests serve as the objective judge, forcing the AI to fix its own code until it passes.
+
+### 4. Implement & Fix (The Golden Packet)
+When a test fails, we don't let the AI guess. TDAD captures a **Golden Packet** containing:
+*   **Actual Execution Traces:** The exact line numbers where the code failed.
+*   **Network Requests:** Full capture of API payloads, headers, and response statuses.
+*   **Console Logs & Errors:** Browser warnings and uncaught exceptions.
+*   **DOM Snapshots:** The accessibility tree state at the moment of failure ("Crime Scene Photo").
+*   **Screenshots:** Visual capture of the page state at the moment of failure.
+*   **Scaffolded Files:** Paths to the exact `.feature`, `.action.js`, and `.test.js` files involved.
+*   **Dependency Context:** Signatures of upstream actions this feature depends on.
+
+This scientific context allows your AI agent to perform surgical fixes instantly, turning a 1-hour debugging session into a 1-minute fix.
+
+### Privacy & Control
+*   **🔐 Privacy First:** TDAD does **not** call any AI APIs directly. No code leaves your machine unless you paste it yourself.
 *   **💸 BYO-AI:** Works with the tools you already pay for (Claude Pro, ChatGPT Plus, Cursor).
-
-### 1. Solve Reliability with "Fill-in-the-Blanks" (Don't Guess Structure)
-Instead of letting the AI invent a random file structure:
-*   **TDAD Scaffolds First:** It creates the empty files (`login.feature`, `login.action.js`, `login.test.js`) in the correct folders.
-*   **AI Fills the Blanks:** The AI is given a precise task: "Implement the function in `login.action.js` to match the spec in `login.feature`."
-*   **Result:** Zero architectural hallucinations. The code lands exactly where it belongs, every time.
-
-### 2. Solve Context with "Surgical Traces" (Don't Guess Bugs)
-When a bug happens, the AI usually guesses why. TDAD provides scientific proof:
-*   **Automated Verification:** TDAD runs the Playwright tests automatically in the background.
-*   **Line-Level Precision:** It captures the exact execution trace. "The test failed at `login.action.js:42` because `token` was undefined."
-*   **The Golden Packet:** It feeds this exact error + the specific code lines back to the AI.
-*   **Result:** The AI fixes the *actual* bug, not a hallucinated one.
-
----
-
-## Core Philosophy: "Scaffold, Don't Guess"
-
-1.  **Architect (TDAD):** Defines the feature, creates the files, writes the Gherkin, tracks status (Red/Green).
-2.  **Developer (AI Agent):** Writes the implementation code using the "Golden Packet" provided by TDAD.
-3.  **QA (TDAD):** Runs the tests and updates the visual board.
 
 ---
 
@@ -342,7 +343,7 @@ Auto-Pilot (aka "Lazy Mode") automates the repetitive loop of BDD → Test → F
        │       └── [node-name]/
        │           ├── [node-name].feature    # Gherkin spec
        │           ├── [node-name].action.js  # Reusable logic
-       │           └── [node-name].test.js    # Playwright test
+       │           ├── [node-name].test.js    # Playwright test
        ├── debug/
        │   ├── generate-bdd.md        # Last BDD generation prompt
        │   ├── generate-tests.md      # Last test generation prompt
@@ -448,7 +449,7 @@ npm run compile
 
 TDAD is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for full details.
 
-**Note:** TDAD is Open Core. The interactive workflow (Canvas, Scaffolding, Golden Packet) is **free and open source (MIT)**. The Auto-Pilot automation layer will be a paid feature to support development. Currently, it is in **Closed Beta**.
+**Note:** TDAD is **Open Source (MIT)**. The core interactive workflow (Canvas, Scaffolding, Golden Packet) is free. The "Auto-Pilot" automation layer is a premium feature to support the project's sustainability. Currently, it is in **Closed Beta**.
 
 ---
 
