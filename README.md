@@ -1,37 +1,32 @@
-# TDAD: The AI TDD Orchestrator
+# TDAD: Test-Driven AI Development
 
 <!-- Badges will be added here after marketplace publication -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**Vision:** Your VS Code extension is **not** a code generator. It is the **Test-Driven Development (TDD) Manager** that keeps your AI agent on the rails.
-**Mission:** Stop AI hallucinations by enforcing strict TDD cycles (Red → Green → Refactor).
+**TDAD** (Test-Driven AI Development) is the "Supervisor" for your AI coding agent.
+
+We all know the feeling: You ask for a feature, the AI generates 5 files, and... nothing works. The imports are wrong, the logic is hallucinated, and you spend the next hour debugging "magic" code.
+
+TDAD solves this by forcing the AI to work like a real engineer: **Test-Driven Development.**
+It doesn't just "write code." It enforces a strict cycle:
+1.  **Plan:** Visually map features on a dependency canvas.
+2.  **Specify:** Define behavior with standard BDD (Gherkin) specs.
+3.  **Verify:** Scaffold and run Playwright tests automatically.
+4.  **Debug:** Fix issues instantly using "Golden Packet" execution traces.
+
+**Why this project exists:**
+This project is building an open-source standard for **Agentic TDD** to transform AI from a "chatbot" into a reliable pair programmer. Community input is needed to define this standard.
 
 > 📸 **Note:** Add screenshot/demo GIF here showing the Canvas UI and 4-step workflow in action
 
-**Quick Links:** [Installation](#installation) • [Getting Started](#getting-started) • [Features](#features) • [Contributing](#contributing) • [Support](#support)
-
----
-
-## The Problem: "The 90% Trap"
-
-**The "High":** You ask Cursor to "Build a ToDo app." It works instantly. You feel invincible.
-**The Crash:** You ask it to "Add User Auth."
-1.  It breaks the existing code.
-2.  It hallucinates imports that don't exist.
-3.  It guesses a random folder structure that ignores your conventions.
-
-**The Reality:** AI gets you **90% of the way there**, but the last **10% (Reliability & Integration)** is a nightmare. You spend more time debugging the AI's mistakes than if you wrote the code yourself.
-
-**Why?**
-1.  **Reliability Gap:** AI is a "Guessing Engine." It guesses code that *looks* right but often fails in edge cases.
-2.  **Context Hallucination:** It reads your code as text, but doesn't know *how it runs*. It misses hidden dependencies and state.
+**Quick Links:** [Installation](#installation) • [Getting Started](#getting-started) • [Features](#features) • [Contributing](#contributing) • [Community](#community)
 
 ---
 
 ## The Solution: TDAD (The Guardrails)
 
-TDAD is the **Traffic Controller** that stops the AI from crashing. We solve the "Last Mile" problem by inverting the workflow:
+TDAD is the **Traffic Controller** that stops the AI from crashing. It solves the "Last Mile" problem by inverting the workflow:
 
 > 📸 **GIF:** Show the "Interactive Workflow" loop: Click BDD -> Paste -> Click Test -> Paste -> Click Fix -> Paste. This demonstrates the core value proposition.
 
@@ -40,15 +35,15 @@ TDAD is the **Traffic Controller** that stops the AI from crashing. We solve the
 
 ### 1. Solve Reliability with "Fill-in-the-Blanks" (Don't Guess Structure)
 Instead of letting the AI invent a random file structure:
-*   **TDAD Scaffolds First:** We create the empty files (`login.feature`, `login.action.js`, `login.test.js`) in the correct folders.
+*   **TDAD Scaffolds First:** It creates the empty files (`login.feature`, `login.action.js`, `login.test.js`) in the correct folders.
 *   **AI Fills the Blanks:** The AI is given a precise task: "Implement the function in `login.action.js` to match the spec in `login.feature`."
 *   **Result:** Zero architectural hallucinations. The code lands exactly where it belongs, every time.
 
 ### 2. Solve Context with "Surgical Traces" (Don't Guess Bugs)
 When a bug happens, the AI usually guesses why. TDAD provides scientific proof:
 *   **Automated Verification:** TDAD runs the Playwright tests automatically in the background.
-*   **Line-Level Precision:** We capture the exact execution trace. "The test failed at `login.action.js:42` because `token` was undefined."
-*   **The Golden Packet:** We feed this exact error + the specific code lines back to the AI.
+*   **Line-Level Precision:** It captures the exact execution trace. "The test failed at `login.action.js:42` because `token` was undefined."
+*   **The Golden Packet:** It feeds this exact error + the specific code lines back to the AI.
 *   **Result:** The AI fixes the *actual* bug, not a hallucinated one.
 
 ---
@@ -329,7 +324,7 @@ TDAD runs the loop.
 
 Auto-Pilot (aka "Lazy Mode") automates the repetitive loop of BDD → Test → Fix by orchestrating your CLI agents (Claude, Cursor, etc).
 
-**Status:** This feature is currently in **Beta**. We are looking for contributors to help refine the agent protocol. Check the issues tab if you'd like to help build the "Agent Interface."
+**Status:** This feature is currently in **Beta**. Contributors are welcome to help refine the agent protocol. Check the issues tab to help build the "Agent Interface."
 
 **Note:** You can always run these steps manually for free. Auto-Pilot is a premium convenience feature ("Lazy Mode") for power users who want to ship faster without the copy-pasting.
 
@@ -419,7 +414,7 @@ The Cortex is the brain that feeds the "Golden Packet".
 
 ## Contributing
 
-We welcome contributions from the community! TDAD is open source and we'd love your help making it better.
+Contributions are welcome! TDAD is open source and community-driven.
 
 ### How to Contribute
 
@@ -432,11 +427,11 @@ We welcome contributions from the community! TDAD is open source and we'd love y
 3. **Test your changes** thoroughly
 4. **Submit a Pull Request** with a clear description of your changes
 
-### Areas We Need Help
+### Areas for Contribution
 
 - Documentation improvements
 - Bug fixes and performance optimizations
-- New prompt templates for different tech stacks
+- Improve trace files for different languages
 - Integration with additional AI agents
 - UI/UX enhancements for the Canvas
 
@@ -460,14 +455,17 @@ TDAD is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for 
 
 ---
 
+## Community
+
+Join the discussion:
+
+-   **Discord:** [Join the TDAD Server](https://discord.gg/tdad) – Discuss agent workflows and TDD patterns.
+-   **Reddit:** [r/TDAD](https://reddit.com/r/TDAD) – Share your workflows and "Golden Packet" saves.
+-   **GitHub Discussions:** [RFCs and Feature Requests](https://github.com/[username]/TDAD/discussions).
+
+---
+
 ## Support
-
-### Community & Help
-
-- **Discord Community:** [Join our Discord](https://discord.gg/tdad) for real-time discussions, support, and sharing tips
-- **GitHub Discussions:** [Ask questions and share ideas](https://github.com/[username]/TDAD/discussions) for long-form Q&A
-- **Report Issues:** [Submit bug reports](https://github.com/[username]/TDAD/issues) with detailed reproduction steps
-- **Documentation:** Check the [Wiki](https://github.com/[username]/TDAD/wiki) for guides and tutorials
 
 ### Commercial Support
 
