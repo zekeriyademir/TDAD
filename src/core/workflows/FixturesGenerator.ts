@@ -440,7 +440,7 @@ ${isESM ? 'export { test, expect };' : 'module.exports = { test, expect };'}
                           null
                 };
             })
-            : [{ name: 'default', url: 'http://localhost:3000', grep: null }];
+            : [{ name: 'default', url: 'http://localhost:5173', grep: null }];
 
         const projectsConfig = projects.map(p => {
             const grepComment = p.name === 'ui' ? 'Match [UI-xxx] and [API-xxx] tests' :

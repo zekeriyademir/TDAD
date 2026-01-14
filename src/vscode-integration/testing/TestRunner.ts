@@ -196,7 +196,7 @@ export class TestRunner implements ITestRunner {
             const tdadConfigFile = path.join(workspacePath, '.tdad', 'playwright.config.js');
             if (!fs.existsSync(tdadConfigFile)) {
                 const config = vscode.workspace.getConfiguration('tdad');
-                const urls = config.get<Record<string, string>>('test.urls', { ui: 'http://localhost:3000' });
+                const urls = config.get<Record<string, string>>('test.urls', { ui: 'http://localhost:5173' });
                 scaffoldingService.scaffoldPlaywrightConfig(workspacePath, urls);
                 logDiagnostic(`📝 Created .tdad/playwright.config.js`);
             }

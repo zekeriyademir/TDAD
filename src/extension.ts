@@ -185,7 +185,7 @@ export function activate(context: vscode.ExtensionContext) {
             const newUrl = await vscode.window.showInputBox({
                 prompt: `Enter new URL for "${nameToEdit}"`,
                 value: urls[nameToEdit],
-                placeHolder: 'http://localhost:3000'
+                placeHolder: 'http://localhost:5173'
             });
             if (!newUrl) { return; }
 

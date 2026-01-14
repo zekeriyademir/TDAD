@@ -217,7 +217,7 @@
         "tdad.test.urls": {
           "type": "object",
           "default": {
-            "ui": "http://localhost:3000"
+            "ui": "http://localhost:5173"
           },
           "description": "URLs for testing. Keys become Playwright projects with baseURL (e.g. frontend, backend, api). Saved to playwright.config.js.",
           "additionalProperties": {

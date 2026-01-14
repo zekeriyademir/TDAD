@@ -11,7 +11,7 @@ const path = require('path');
 console.log('🚀 Starting TDAD Webview Development Server...\n');
 
 // Start Vite dev server
-const vite = spawn('npx', ['vite', '--port', '3000'], {
+const vite = spawn('npx', ['vite', '--port', '5173'], {
   cwd: path.join(__dirname, '..'),
   stdio: 'inherit',
   shell: true
