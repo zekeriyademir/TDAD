@@ -19,7 +19,7 @@ It doesn't just "write code." It enforces a strict cycle:
 
 **Quick Links:** [Installation](#installation) • [Getting Started](#getting-started) • [Features](#features) • [Contributing](#contributing) • [Community](#community)
 
----
+----
 
 ## The Solution: TDAD (The Guardrails)
 
