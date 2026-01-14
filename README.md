@@ -421,9 +421,7 @@ TDAD is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for 
 
 Join the discussion:
 
--   **Discord:** [Join the TDAD Server](https://discord.gg/tdad) – Discuss agent workflows and TDD patterns.
--   **Reddit:** [r/TDAD](https://reddit.com/r/TDAD) – Share your workflows and "Golden Packet" saves.
--   **GitHub Discussions:** [RFCs and Feature Requests](https://github.com/zd8899/TDAD/discussions).
+-   **GitHub Discussions:** [RFCs, Support, and Feature Requests](https://github.com/zd8899/TDAD/discussions).
 
 ---
 
