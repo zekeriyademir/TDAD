@@ -226,10 +226,16 @@
         },
         "tdad.testTypes": {
           "type": "array",
-          "default": ["ui", "api"],
+          "default": [
+            "ui",
+            "api"
+          ],
           "items": {
             "type": "string",
-            "enum": ["ui", "api"]
+            "enum": [
+              "ui",
+              "api"
+            ]
           },
           "description": "Types of tests to generate (Playwright only: UI and API tests)"
         },
@@ -268,9 +274,16 @@
         "tdad.agent.cli.permissionFlags": {
           "type": "object",
           "default": {
-            "claude": { "dangerouslySkipPermissions": false },
-            "aider": { "yesAlways": false, "autoCommit": false },
-            "codex": { "autoApprove": false }
+            "claude": {
+              "dangerouslySkipPermissions": false
+            },
+            "aider": {
+              "yesAlways": false,
+              "autoCommit": false
+            },
+            "codex": {
+              "autoApprove": false
+            }
           },
           "description": "CLI-specific permission flags for hands-free automation"
         },
@@ -333,6 +346,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "reactflow": "^11.11.4",
+    "strip-ansi": "^7.1.2",
     "uuid": "^13.0.0"
   }
 }

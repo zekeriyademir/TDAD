@@ -21,7 +21,11 @@ export class PromptService {
     private readonly workspaceRoot: string | undefined;
 
     constructor(extensionPath: string, workspacePath?: string) {
-        this.extensionPromptsDir = path.join(extensionPath, 'src', 'core', 'prompts');
+        // In production (packaged extension), prompts are in out/core/prompts
+        // In development, prompts are in src/core/prompts
+        const devPath = path.join(extensionPath, 'src', 'core', 'prompts');
+        const prodPath = path.join(extensionPath, 'out', 'core', 'prompts');
+        this.extensionPromptsDir = fs.existsSync(prodPath) ? prodPath : devPath;
         this.workspacePromptsDir = workspacePath
             ? path.join(workspacePath, '.tdad', 'prompts')
             : this.extensionPromptsDir;

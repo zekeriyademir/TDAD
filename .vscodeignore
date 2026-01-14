@@ -12,10 +12,10 @@ vite.config.ts
 **/*.md
 !README.md
 !LICENSE
+!out/core/prompts/*.md
 src/**
 scripts/**
 tests/**
-node_modules/**
 *.vsix
 .editorconfig
 .prettierrc
