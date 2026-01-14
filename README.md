@@ -69,7 +69,7 @@ When a bug happens, the AI usually guesses why. TDAD provides scientific proof:
 ### Manual Installation (Development)
 ```bash
 # Clone the repository
-git clone https://github.com/[username]/TDAD.git
+git clone https://github.com/zd8899/TDAD.git
 cd TDAD
 
 # Install dependencies
@@ -458,7 +458,7 @@ Join the discussion:
 
 -   **Discord:** [Join the TDAD Server](https://discord.gg/tdad) – Discuss agent workflows and TDD patterns.
 -   **Reddit:** [r/TDAD](https://reddit.com/r/TDAD) – Share your workflows and "Golden Packet" saves.
--   **GitHub Discussions:** [RFCs and Feature Requests](https://github.com/[username]/TDAD/discussions).
+-   **GitHub Discussions:** [RFCs and Feature Requests](https://github.com/zd8899/TDAD/discussions).
 
 ---
 

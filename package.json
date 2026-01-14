@@ -4,10 +4,16 @@
   "description": "Build apps through workflow canvas with test-driven multi-model AI code generation",
   "version": "0.0.1",
   "publisher": "tdad",
+  "license": "MIT",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tdad/tdad-vscode-extension.git"
+    "url": "https://github.com/zd8899/TDAD.git"
   },
+  "bugs": {
+    "url": "https://github.com/zd8899/TDAD/issues"
+  },
+  "homepage": "https://github.com/zd8899/TDAD#readme",
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -15,6 +21,24 @@
     "Programming Languages",
     "Other"
   ],
+  "keywords": [
+    "ai",
+    "test-driven-development",
+    "tdd",
+    "playwright",
+    "workflow",
+    "code-generation",
+    "bdd",
+    "gherkin",
+    "testing",
+    "automation",
+    "canvas",
+    "visual-programming"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
   "main": "./out/extension.js",
   "activationEvents": [
     "onStartupFinished"
