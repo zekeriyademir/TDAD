@@ -36,7 +36,7 @@ export default defineConfig({
   
   // Development server configuration (for local testing)
   server: {
-    port: 3000,
+    port: 5173,
     open: false // Don't auto-open browser
   },
   
