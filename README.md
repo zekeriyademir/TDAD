@@ -286,9 +286,14 @@ TDAD runs the loop.
 
 Auto-Pilot (aka "Lazy Mode") automates the repetitive loop of BDD → Test → Fix by orchestrating your CLI agents (Claude, Cursor, etc).
 
-**Status:** This feature is currently in **Beta**. Contributors are welcome to help refine the agent protocol. Check the issues tab to help build the "Agent Interface."
+**Status:** This feature is currently in **Closed Beta**.
+
+**[→ Join the Beta Waitlist](https://forms.gle/FezGSmoGUf9ieVUZ7)**
+
+**Closed Beta Offer:** The first 100 active users will get **Lifetime Free Access** to Auto-Pilot when we launch.
 
 **Note:** You can always run these steps manually for free. Auto-Pilot is a premium convenience feature ("Lazy Mode") for power users who want to ship faster without the copy-pasting.
+
 
 ---
 

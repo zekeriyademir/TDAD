@@ -80,7 +80,7 @@ export const AutopilotConfirmDialog: React.FC<AutopilotConfirmDialogProps> = ({
   if (shouldShowBetaWindow) {
     const handleJoin = () => {
       setJoinState('joining');
-      window.open('https://tdad.ai', '_blank');
+      window.open('https://forms.gle/FezGSmoGUf9ieVUZ7', '_blank');
       setTimeout(() => setJoinState('idle'), 1000);
     };
 
@@ -105,14 +105,16 @@ export const AutopilotConfirmDialog: React.FC<AutopilotConfirmDialogProps> = ({
 
            <p style={{ color: 'var(--vscode-descriptionForeground)', lineHeight: 1.6, marginBottom: '28px', fontSize: '15px' }}>
              {joinState === 'success'
-               ? "You've secured your spot as a Founding Member. We'll verify your email and notify you when your exclusive access is ready."
+               ? "You've secured your spot in the Beta Waitlist. We'll notify you when your access is ready."
                 : (
                   <>
-                    Auto-Pilot automates the repetitive loop of BDD {'->'} Test {'->'} Fix by orchestrating your CLI agents (Claude, Cursor, etc).
+                    Auto-Pilot (aka "Lazy Mode") automates the repetitive loop of BDD {'->'} Test {'->'} Fix by orchestrating your CLI agents (Claude, Cursor, etc).
                     <br/><br/>
-                    <strong>Note:</strong> You can always run these steps manually for free. Auto-Pilot is a convenience feature for when you want to ship faster without the copy-pasting.
+                    <span style={{ color: '#7c3aed', fontWeight: 600 }}>Closed Beta Offer:</span> The first 100 active users will get <strong>Lifetime Free Access</strong> to Auto-Pilot when we launch.
                     <br/><br/>
-                    <span style={{ color: '#7c3aed', fontWeight: 600 }}>Closed Beta Offer:</span> The first 100 active users will get a <strong>Lifetime Free License</strong> when we launch soon.
+                    <strong>Note:</strong> You can always run these steps manually for free. Auto-Pilot is a premium convenience feature ("Lazy Mode") for power users who want to ship faster without the copy-pasting.
+                    <br/><br/>
+                    <span style={{ color: '#7c3aed', fontWeight: 600 }}>Contributors Welcome:</span> Help us refine the agent protocol.
                  </>
                )}
            </p>
