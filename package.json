@@ -2,7 +2,7 @@
   "name": "tdad",
   "displayName": "TDAD - Test-Driven AI Development",
   "description": "Build apps through workflow canvas with test-driven multi-model AI code generation",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "tdad",
   "license": "MIT",
   "icon": "icon.png",

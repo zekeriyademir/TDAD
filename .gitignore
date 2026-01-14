@@ -19,3 +19,4 @@ media/canvas-react.js
 .claude/settings.local.json
 tmpclaude-*
 CLAUDE.md
+.claude/agents/vscode-publisher.md
