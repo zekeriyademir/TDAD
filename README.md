@@ -15,9 +15,6 @@ It doesn't just "write code." It enforces a strict cycle:
 3.  **Verify:** Scaffold and run Playwright tests automatically.
 4.  **Debug:** Fix issues instantly using "Golden Packet" execution traces.
 
-**Why this project exists:**
-This project is building an open-source standard for **Agentic TDD** to transform AI from a "chatbot" into a reliable pair programmer. Community input is needed to define this standard.
-
 > 📸 **Note:** Add screenshot/demo GIF here showing the Canvas UI and 4-step workflow in action
 
 **Quick Links:** [Installation](#installation) • [Getting Started](#getting-started) • [Features](#features) • [Contributing](#contributing) • [Community](#community)
