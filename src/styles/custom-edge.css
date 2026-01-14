@@ -1,0 +1,29 @@
+/* Custom Edge - Delete button on hover */
+
+.custom-edge__delete-btn {
+    z-index: 100;
+}
+
+.custom-edge__delete-btn-inner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--vscode-errorBackground, #f44336);
+    border: 1px solid var(--vscode-errorForeground, #fff);
+    color: var(--vscode-errorForeground, #fff);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+    transition: transform 0.15s ease, background 0.15s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.custom-edge__delete-btn-inner:hover {
+    transform: scale(1.2);
+    background: #d32f2f;
+}

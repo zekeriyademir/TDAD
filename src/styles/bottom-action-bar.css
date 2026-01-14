@@ -1,0 +1,514 @@
+/* Unified Pipeline - Bottom Action Bar */
+
+.bottom-action-bar {
+    /* Position is now handled by ReactFlow Panel or UnifiedBottomBar container */
+    /* position: fixed; - REMOVED for Unified Layout */
+    /* bottom: 32px; - REMOVED for Unified Layout */
+    /* left: 50%; - REMOVED for Unified Layout */
+    /* transform: translateX(-50%); - REMOVED for Unified Layout */
+    z-index: 1000;
+    pointer-events: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Space between main bar and secondary bar */
+}
+
+/* Glassmorphic Container (Main Bar) */
+.bottom-action-bar__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: max-content; /* Allow container to grow to fit wider sections */
+    min-width: 500px; /* Reduced baseline width for smaller buttons */
+    align-items: stretch;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 100px; /* Pill shape */
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 6px; /* Reduced padding slightly */
+    padding-bottom: 12px; /* Adjusted space for progress bar */
+    overflow: visible; /* Allow hover scales */
+    gap: 0; /* Remove gap for strict 33% alignment */
+}
+
+/* Secondary Bar (Context/Docs) */
+.bottom-action-bar__secondary {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 4px 8px;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: slide-up 0.2s ease-out;
+}
+
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Secondary Buttons (Chip style) */
+.bottom-action-bar__chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    color: #555555;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bottom-action-bar__chip:hover {
+    background: rgba(0, 0, 0, 0.08);
+    color: #333333;
+    border-color: rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.bottom-action-bar__chip-icon {
+    font-size: 12px;
+}
+
+/* Arrow Separator */
+.bottom-action-bar__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.2);
+    padding: 0 2px;
+    font-size: 14px;
+    user-select: none;
+    font-weight: 300;
+    flex-shrink: 0;
+}
+
+/* Absolute positioned separator arrow for Section 1 and 2 */
+.bottom-action-bar__arrow--separator {
+    position: absolute;
+    right: -9px; /* Half of approx width (~18px) to center on boundary */
+    bottom: 0; /* Position at bottom, directly above progress bar gap */
+    z-index: 5;
+    /* Ensure it doesn't take layout space */
+    width: 18px;
+    padding: 0;
+}
+
+/*
+ * Section - 3 equal-width sections aligned with progress bar
+ */
+.bottom-action-bar__section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px; /* Reduced min-width for smaller buttons */
+    position: relative; /* Context for absolute arrow */
+}
+
+/* First section (BDD) - slight right padding */
+.bottom-action-bar__section:nth-child(1) .bottom-action-bar__group {
+    margin-left: 15px;
+}
+
+/* Third section (Run + Fix) - align to left with reduced margin */
+.bottom-action-bar__section:nth-child(3) {
+    justify-content: flex-start;
+}
+
+.bottom-action-bar__section:nth-child(3) .bottom-action-bar__joined-wrapper {
+    margin-left: 10px;
+}
+
+/*
+ * Action Groups
+ */
+.bottom-action-bar__group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 24px;
+    padding: 0;
+    transition: transform 0.2s ease;
+    position: relative;
+    gap: 4px; /* Space between main button and mini button */
+}
+
+.bottom-action-bar__group:hover {
+    /* Slight scale on group hover */
+    z-index: 1;
+}
+
+.bottom-action-bar__group--disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    filter: grayscale(0.8);
+}
+
+/*
+ * Segments / Main Buttons
+ */
+.bottom-action-bar__segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 4px 12px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    color: #333333;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    white-space: nowrap;
+    outline: none;
+    height: 28px; /* Smaller height */
+    min-width: 70px; /* Smaller min-width */
+}
+
+/* 
+ * Joined Segment Styles (Option 1 Implementation)
+ * Merges two buttons into a single capsule with a divider
+ */
+.bottom-action-bar__joined-wrapper {
+    display: flex;
+    align-items: center;
+    /* Simulate the container look of a single segment */
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Remove padding so buttons fill it */
+    padding: 0;
+    height: 28px; 
+}
+
+.bottom-action-bar__joined-wrapper:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Styles for the buttons INSIDE the joined wrapper */
+.bottom-action-bar__segment--joined-left,
+.bottom-action-bar__segment--joined-right {
+    /* Reset standard segment styles that conflict */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    height: 100%;
+    /* Ensure they fill the wrapper height */
+    
+    /* Adjust padding/min-width for the split */
+    padding: 0 12px; 
+    min-width: 50px;
+}
+
+.bottom-action-bar__segment--joined-left {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.bottom-action-bar__segment--joined-right {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Hover effects for individual joined buttons */
+.bottom-action-bar__segment--joined-left:hover:not(:disabled),
+.bottom-action-bar__segment--joined-right:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Active states override transparent background */
+.bottom-action-bar__segment--joined-left.bottom-action-bar__segment--active,
+.bottom-action-bar__segment--joined-right.bottom-action-bar__segment--active {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    color: #ffffff;
+    /* We need to re-apply border radius here because background is set */
+}
+
+/* Completed states */
+.bottom-action-bar__segment--joined-left.bottom-action-bar__segment--completed,
+.bottom-action-bar__segment--joined-right.bottom-action-bar__segment--completed {
+    background: rgba(34, 197, 94, 0.15) !important;
+    color: #16a34a;
+}
+
+/* Divider/Icon Separator */
+.bottom-action-bar__joined-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    user-select: none;
+}
+
+/* Hide divider if either side is active to keep clean look */
+.bottom-action-bar__joined-wrapper:has(.bottom-action-bar__segment--active) .bottom-action-bar__joined-separator {
+    opacity: 0;
+}
+
+.bottom-action-bar__segment:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.08);
+    color: #111111;
+    border-color: rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-action-bar__segment:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+}
+
+/* 
+ * ACTIVE STATE - The "Call to Action"
+ * Use a strong blue/purple gradient to scream "Click Me"
+ */
+.bottom-action-bar__segment--active {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-action-bar__segment--active:hover:not(:disabled) {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/*
+ * COMPLETED STATE - The "Done"
+ * Subtle green tint, but keeps it clean
+ */
+.bottom-action-bar__segment--completed {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #16a34a; /* Dark green text for light theme */
+}
+
+.bottom-action-bar__segment--completed:hover:not(:disabled) {
+    background: rgba(34, 197, 94, 0.25);
+    border-color: rgba(34, 197, 94, 0.5);
+    color: #15803d;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
+}
+
+/*
+ * Mini Edit Button - positioned as badge overlay
+ */
+.bottom-action-bar__mini-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.95);
+    color: #666666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 0; /* No longer overlap */
+    font-size: 11px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.bottom-action-bar__mini-btn:hover {
+    background: #ffffff;
+    color: #333333;
+    border-color: rgba(0, 0, 0, 0.2);
+    transform: scale(1.15);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Node Info Segment (Read-only) */
+.bottom-action-bar__segment--info {
+    cursor: default;
+    padding-right: 16px;
+    font-weight: 600;
+    color: #333333;
+    background: transparent !important; /* No hover effect */
+    border: none;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Status Indicators */
+.bottom-action-bar__indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #555;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.bottom-action-bar__indicator--pending { background: #666; }
+.bottom-action-bar__indicator--success { background: #4ade80; box-shadow: 0 0 8px rgba(74, 222, 128, 0.6); }
+.bottom-action-bar__indicator--warning { background: #fbbf24; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+.bottom-action-bar__indicator--error { background: #f87171; box-shadow: 0 0 8px rgba(248, 113, 113, 0.6); }
+.bottom-action-bar__indicator--running { 
+    background: #60a5fa;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(96, 165, 250, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0); }
+}
+
+/* Text truncation for node title */
+.bottom-action-bar__title {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+/* Icon adjustments */
+.bottom-action-bar__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+/* Row container - horizontal layout for Auto + Pipeline */
+.bottom-action-bar__row {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between Auto and Pipeline */
+}
+
+/* Auto Run Container - Separate glassmorphic pill */
+.bottom-action-bar__auto-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 100px;
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 6px;
+}
+
+/* Auto Run Button - Distinct purple/gradient style */
+.bottom-action-bar__segment--auto {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-action-bar__segment--auto:hover:not(:disabled) {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.bottom-action-bar__segment--auto.bottom-action-bar__segment--active {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    animation: auto-pulse 2s infinite;
+}
+
+@keyframes auto-pulse {
+    0%, 100% { box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4); }
+    50% { box-shadow: 0 4px 24px rgba(124, 58, 237, 0.7); }
+}
+
+/* Coming Soon state - Muted purple with lock */
+.bottom-action-bar__segment--coming-soon {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important;
+    border: 1px solid rgba(139, 92, 246, 0.5) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    opacity: 0.85;
+    cursor: default !important;
+}
+
+.bottom-action-bar__segment--coming-soon:hover {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    opacity: 1;
+}
+
+.bottom-action-bar__segment--coming-soon:disabled {
+    opacity: 0.85;
+    cursor: default !important;
+}
+
+/* Main wrapper - contains content + progress bar at bottom */
+.bottom-action-bar__main-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3-Segment Progress Bar - at bottom of main pill */
+.bottom-action-bar__progress-container {
+    position: absolute;
+    bottom: 6px; /* Adjusted for increased padding */
+    left: 24px;  /* Significantly increased to clear rounded corners */
+    right: 24px;
+    display: flex;
+    gap: 4px; /* Matches the visual gap between sections */
+    height: 4px;
+    z-index: 10;
+}
+
+.bottom-action-bar__progress-segment {
+    flex: 1; /* Each segment takes equal space (33%) */
+    height: 100%;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.bottom-action-bar__progress-segment--animated {
+    animation: bar-segment-shimmer 1.2s ease-in-out infinite;
+    background: linear-gradient(90deg,
+        rgba(245, 158, 11, 0.6) 0%,
+        rgba(245, 158, 11, 1) 50%,
+        rgba(245, 158, 11, 0.6) 100%
+    ) !important;
+    background-size: 200% 100% !important;
+}
+
+@keyframes bar-segment-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}

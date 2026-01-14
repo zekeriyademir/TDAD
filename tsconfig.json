@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2022",
+    "outDir": "out",
+    "lib": ["ES2022"],
+    "sourceMap": true,
+    "rootDir": "src",
+    "baseUrl": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@langchain/core/*": ["node_modules/@langchain/core/dist/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    ".vscode-test",
+    "media",
+    "src/webview",
+    "src/presentation/webview",
+    "vite.config.ts",
+    "webpack.config.js",
+    "scripts"
+  ]
+}

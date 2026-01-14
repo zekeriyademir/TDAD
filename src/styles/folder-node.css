@@ -1,0 +1,217 @@
+/* Folder Node Renderer Styles - Consistent with TDADNode */
+
+.folder-node {
+    background: var(--vscode-editor-background);
+    border-radius: 6px;
+    padding: 8px;
+    min-width: 140px;
+    max-width: 200px;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    position: relative;
+    /* Folder-specific: amber/gold border to indicate folder type */
+    border: 2px solid #d97706;
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.15);
+}
+
+.folder-node:hover {
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+}
+
+.folder-node--selected {
+    box-shadow: 0 0 0 2px var(--vscode-focusBorder),
+                0 4px 12px rgba(217, 119, 6, 0.3) !important;
+    transform: translateY(-1px);
+    z-index: 5;
+}
+
+.folder-node--unselected {
+    /* Uses default border from .folder-node */
+}
+
+/* Folder type badge - similar to status badge in TDADNode */
+.folder-node__type-badge {
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 600;
+    background: #d97706;
+    color: #fff;
+    margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.folder-node__type-badge-icon {
+    font-size: 10px;
+}
+
+.folder-node__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.folder-node__title {
+    color: var(--vscode-editor-foreground);
+    font-weight: 600;
+    font-size: 12px;
+    margin: 0;
+}
+
+.folder-node__path {
+    color: var(--vscode-descriptionForeground);
+    font-size: 10px;
+    word-break: break-all;
+    opacity: 0.8;
+}
+
+.folder-node__child-count {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--vscode-badge-foreground);
+    font-size: 9px;
+    font-weight: 600;
+    text-align: center;
+    padding: 2px 6px;
+    background: var(--vscode-badge-background);
+    border-radius: 8px;
+}
+
+.folder-node__description {
+    color: var(--vscode-descriptionForeground);
+    font-size: 10px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    margin-top: 6px;
+}
+
+/* Floating Action Buttons - consistent with TDADNode */
+.folder-node__floating-buttons {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    background: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 6px;
+    padding: 4px 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.folder-node:hover .folder-node__floating-buttons,
+.folder-node--selected .folder-node__floating-buttons {
+    opacity: 1;
+    visibility: visible;
+}
+
+.folder-node__floating-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.folder-node__floating-btn:hover {
+    background: var(--vscode-list-hoverBackground);
+}
+
+.folder-node__floating-btn:active {
+    background: var(--vscode-list-activeSelectionBackground);
+}
+
+.folder-node__floating-btn--delete:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+/* Legacy action buttons - keeping for backward compatibility but hidden by default */
+.folder-node__actions {
+    display: none;
+}
+
+
+.folder-node__description--empty {
+    font-style: italic;
+    opacity: 0.6;
+}
+
+/* Delete Confirmation Dialog */
+.folder-node__delete-confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.folder-node__delete-confirm {
+    background: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 8px;
+    padding: 16px;
+    min-width: 280px;
+    max-width: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.folder-node__delete-confirm-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--vscode-editor-foreground);
+    margin-bottom: 12px;
+}
+
+.folder-node__delete-confirm-message {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.folder-node__delete-confirm-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.folder-node__delete-confirm-btn {
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s ease;
+}
+
+.folder-node__delete-confirm-btn:hover {
+    opacity: 0.9;
+}
+
+.folder-node__delete-confirm-btn--cancel {
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+}
+
+.folder-node__delete-confirm-btn--delete {
+    background: #ef4444;
+    color: white;
+}

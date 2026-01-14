@@ -1,0 +1,383 @@
+/* Node Form Component Styles */
+
+.node-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.node-form__content {
+    background: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Header */
+.node-form__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.node-form__title {
+    margin: 0;
+}
+
+.node-form__close-button {
+    background: transparent;
+    color: var(--vscode-editor-foreground);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.node-form__close-button:hover {
+    opacity: 0.7;
+}
+
+/* Node Type Selection */
+.node-form__section {
+    margin-bottom: 16px;
+}
+
+.node-form__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.node-form__radio-group {
+    display: flex;
+    gap: 8px;
+}
+
+.node-form__radio-button {
+    padding: 10px 20px;
+    border: 2px solid var(--vscode-input-border);
+    border-radius: 6px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-editor-foreground);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.node-form__radio-button:hover {
+    border-color: var(--vscode-focusBorder);
+}
+
+.node-form__radio-button--selected {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border-color: var(--vscode-button-background);
+}
+
+/* Form inputs */
+.node-form__input,
+.node-form__textarea,
+.node-form__select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--vscode-input-border);
+    border-radius: 4px;
+    background: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    font-family: var(--vscode-font-family);
+    font-size: 13px;
+}
+
+.node-form__input:focus,
+.node-form__textarea:focus,
+.node-form__select:focus {
+    outline: 1px solid var(--vscode-focusBorder);
+}
+
+.node-form__textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.node-form__input--monospace {
+    font-family: monospace;
+}
+
+/* Feature section */
+.node-form__features-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.node-form__feature-card {
+    border: 1px solid var(--vscode-panel-border);
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    background: var(--vscode-input-background);
+}
+
+.node-form__feature-header {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    margin-bottom: 8px;
+}
+
+.node-form__feature-input-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.node-form__feature-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+/* Test items */
+.node-form__test-item {
+    border: 1px solid var(--vscode-panel-border);
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background: var(--vscode-editor-background);
+}
+
+.node-form__test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.node-form__test-title {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.node-form__test-field {
+    margin-bottom: 8px;
+}
+
+.node-form__test-field:last-child {
+    margin-bottom: 0;
+}
+
+.node-form__test-label {
+    display: block;
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 4px;
+}
+
+/* Buttons */
+.node-form__button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: opacity 0.2s;
+}
+
+.node-form__button:hover {
+    opacity: 0.9;
+}
+
+.node-form__button--primary {
+    background: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+}
+
+.node-form__button--secondary {
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+}
+
+.node-form__button--danger {
+    background: var(--vscode-errorBackground);
+    color: var(--vscode-errorForeground);
+}
+
+.node-form__button--small {
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+.node-form__button--icon {
+    padding: 4px 8px;
+    font-size: 16px;
+}
+
+.node-form__button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Footer actions */
+.node-form__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--vscode-panel-border);
+}
+
+/* Helper text */
+.node-form__helper-text {
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    margin-top: 4px;
+}
+
+/* Loading spinner */
+.node-form__spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--vscode-input-border);
+    border-top: 2px solid var(--vscode-button-foreground);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Metadata suggestion area */
+.node-form__suggestion-area {
+    padding: 12px;
+    background: var(--vscode-list-hoverBackground);
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.node-form__suggestion-text {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+}
+
+/* Help text */
+.node-form__help-text {
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    margin-top: 6px;
+    font-style: italic;
+}
+
+/* Documentation files section */
+.node-form__docs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.node-form__docs-add-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.node-form__docs-add-btn:hover {
+    opacity: 0.85;
+}
+
+.node-form__docs-list {
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.node-form__docs-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.node-form__docs-item:last-child {
+    border-bottom: none;
+}
+
+.node-form__docs-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.node-form__docs-name {
+    flex: 1;
+    font-size: 12px;
+    color: var(--vscode-editor-foreground);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.node-form__docs-remove {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    padding: 2px 6px;
+    border-radius: 3px;
+    transition: all 0.15s ease;
+}
+
+.node-form__docs-remove:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.node-form__docs-empty {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    font-style: italic;
+    padding: 12px;
+    background: var(--vscode-list-hoverBackground);
+    border-radius: 4px;
+    margin: 0;
+}
+
+.node-form__docs-hint {
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.node-form__hint {
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    margin-top: 4px;
+    margin-bottom: 0;
+}

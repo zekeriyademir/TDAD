@@ -1,0 +1,274 @@
+/* Autopilot Confirmation Dialog - Glassmorphic Style */
+
+.autopilot-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: overlay-fade-in 0.15s ease-out;
+}
+
+@keyframes overlay-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.autopilot-confirm-dialog {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 24px 32px;
+  min-width: 320px;
+  max-width: 400px;
+  text-align: center;
+  animation: dialog-slide-up 0.2s ease-out;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
+}
+
+.autopilot-dialog-close-x {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #555555;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.autopilot-dialog-close-x:hover {
+  background: rgba(0, 0, 0, 0.12);
+  color: #333333;
+  transform: scale(1.1);
+}
+
+@keyframes dialog-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.autopilot-confirm-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.autopilot-confirm-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.autopilot-confirm-message {
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.autopilot-confirm-message strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.autopilot-confirm-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.autopilot-confirm-btn {
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  outline: none;
+}
+
+.autopilot-confirm-btn--cancel {
+  background: rgba(0, 0, 0, 0.06);
+  color: #555555;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.autopilot-confirm-btn--cancel:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333333;
+}
+
+.autopilot-confirm-btn--confirm {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+}
+
+.autopilot-confirm-btn--confirm:hover {
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+  transform: translateY(-1px);
+}
+
+.autopilot-confirm-btn--confirm:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Mode Selector */
+.autopilot-confirm-dialog--with-modes {
+  min-width: 360px;
+  max-width: 420px;
+}
+
+.autopilot-mode-selector {
+  margin-bottom: 20px;
+}
+
+.autopilot-mode-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #777777;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.autopilot-mode-options {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.autopilot-mode-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 80px;
+}
+
+.autopilot-mode-option:hover {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.autopilot-mode-option--selected {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: #8b5cf6;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+}
+
+.autopilot-mode-option__checkbox {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #7c3aed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.autopilot-mode-option {
+  position: relative;
+}
+
+.autopilot-mode-option__icon {
+  font-size: 20px;
+}
+
+.autopilot-mode-option__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.autopilot-mode-option--selected .autopilot-mode-option__label {
+  color: #7c3aed;
+}
+
+.autopilot-mode-description {
+  font-size: 12px;
+  color: #888888;
+  font-style: italic;
+}
+
+/* Retries Selector */
+.autopilot-retries-selector {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.autopilot-retries-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555555;
+}
+
+.autopilot-retries-input {
+  width: 60px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #333333;
+  transition: all 0.2s ease;
+}
+
+.autopilot-retries-input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.autopilot-retries-input:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+}
