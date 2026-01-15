@@ -13,11 +13,12 @@
 
 ## 1. CORE CONSTRAINTS
 - **Action Protocol:** Actions must NEVER throw. Always return `{ success: true/false, errorMessage, ...data }`.
-- **Playwright:** Use `getByRole`, `getByText`, etc. ❌ NO `xpath`, `css` selectors, or `waitForTimeout`.
+- **Playwright Selectors:** Use `getByRole`, `getByText`, `getByLabel` etc. ❌ NO `xpath`, `css` selectors.
+- **NO waitForTimeout:** ❌ NEVER use `page.waitForTimeout()` or `setTimeout()`. ✅ ALWAYS use Playwright's auto-waiting: `waitForLoadState()`, `waitForURL()`, or `expect(locator).toBeVisible()`.
+- **Playwright Assertions:** Use `await expect(locator).toBeVisible()` or `.toContainText()`. ❌ NO extracting content first with `textContent()`, `innerText()`, etc. then asserting.
 - **Unique Data:** ALWAYS use timestamps/random strings for creating records (e.g., `user_${Date.now()}@test.com`) to avoid conflicts.
 - **Real Tests:** NO mocks/stubs unless explicitly requested. Use real browser/API interactions.
 - **Exports:** Actions must export reusable data helpers (e.g., `getUserId`) for downstream tests.
-- **Anti-Flakiness:** Use `waitForLoadState()` not `waitForTimeout()`. Use Playwright assertions not manual checks.
 - **No Conditional Assertions:** Never wrap assertions in `if` blocks. Always assert unconditionally.
 - **Test Self-Containment:** Tests MUST create their own prerequisites. NEVER skip because "data doesn't exist".
 - **Round-Trip Verification:** Don't just assert UI feedback. Verify the action actually worked (e.g., after registration, verify login works).
@@ -261,9 +262,10 @@ Implement `{{actionFilePath}}` and `{{testFilePath}}`.
 ## Verification
 - [ ] Every Gherkin scenario has a test
 - [ ] Action returns `{ success, errorMessage, ...data }`, never throws
+- [ ] NO `waitForTimeout()` or `setTimeout()` - only Playwright auto-waits
+- [ ] Playwright assertions (`.toBeVisible()`, `.toContainText()`) - no `textContent()` extraction first
 - [ ] Dependencies called directly (import action, call function)
 - [ ] Helper functions exported if needed (extract data from action result)
-- [ ] Playwright assertions use `.toBeVisible()` / data validation
 - [ ] No conditional assertions
 - [ ] Tests create their own prerequisites (no skipping for missing data)
 - [ ] Success tests verify outcome (round-trip), not just UI feedback
