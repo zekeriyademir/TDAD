@@ -14,10 +14,10 @@ interface FeatureConfig {
 
 const FEATURE_CONFIG: Record<FeatureId, FeatureConfig> = {
   autopilot: {
-    enabled: false,
-    comingSoon: true,
-    comingSoonMessage: 'Auto-Pilot is in Closed Beta. Join the waitlist for an invite, or check the source code for an easter egg ;)',
-    signupUrl: 'https://tdad.ai'
+    enabled: true,
+    comingSoon: false,
+    comingSoonMessage: '',
+    signupUrl: ''
   }
 };
 

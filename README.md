@@ -282,17 +282,19 @@ TDAD runs the loop.
 *   **Test Results:** Captures test outcomes, traces, and golden packet data.
 *   **Visual Feedback:** Instantly updates the canvas node color based on the test result.
 
-### 7. "Auto-Pilot" (Lazy Mode) [Closed Beta]
+### 7. "Auto-Pilot" (Lazy Mode)
 
 Auto-Pilot (aka "Lazy Mode") automates the repetitive loop of BDD → Test → Fix by orchestrating your CLI agents (Claude, Cursor, etc).
 
-**Status:** This feature is currently in **Closed Beta**.
+**Status:** Available Now (Free)
 
-**[→ Join the Beta Waitlist](https://forms.gle/FezGSmoGUf9ieVUZ7)**
+**How it works:**
+1. TDAD writes instructions to `.tdad/NEXT_TASK.md`
+2. It triggers your configured CLI agent (Claude Code, Aider, etc.)
+3. The agent implements the code and writes "DONE"
+4. TDAD runs the tests and loops until passing
 
-**Closed Beta Offer:** The first 100 active users will get **Lifetime Free Access** to Auto-Pilot when we launch.
-
-**Note:** You can always run these steps manually for free. Auto-Pilot is a premium convenience feature ("Lazy Mode") for power users who want to ship faster without the copy-pasting.
+**Note:** You need your own API keys for the CLI agents (BYOK - Bring Your Own Key).
 
 
 ---

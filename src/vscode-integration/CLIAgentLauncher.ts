@@ -109,6 +109,7 @@ export class CLIAgentLauncher {
      * @param taskDescription - Optional description for logging
      */
     public triggerAgent(taskFile = '.tdad/NEXT_TASK.md', taskDescription?: string): void {
+        /*
         // SECURITY: Hard-gate for Day 1 Launch - prevent bypass via settings
         // Exception: Users with valid Beta Access Code
         const betaCode = vscode.workspace.getConfiguration('tdad').get<string>('betaAccessCode');
@@ -132,6 +133,7 @@ export class CLIAgentLauncher {
             logger.log('CLI-AGENT-LAUNCHER', 'Blocked triggerAgent: Feature is gated (Coming Soon) and no valid beta code found');
             return;
         }
+        */
 
         const config = this.getConfig();
 
