@@ -23,6 +23,7 @@ const TDADNode: React.FC<NodeProps<TDADNodeData>> = ({ data, selected }) => {
     hasBddSpec, hasTestDetails, bddHasRealContent, testHasRealContent, automationPhase
   } = data;
   const [isHovered, setIsHovered] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   // Calculate dependency count from edges (edges where this node is the target)
   const dependencyCount = edges.filter(e => e.target === node.id).length;
@@ -112,9 +113,20 @@ const TDADNode: React.FC<NodeProps<TDADNodeData>> = ({ data, selected }) => {
   // Handle delete button click
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setShowDeleteConfirm(true);
+  };
+
+  const handleConfirmDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (onDelete) {
       onDelete(node.id);
     }
+    setShowDeleteConfirm(false);
+  };
+
+  const handleCancelDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowDeleteConfirm(false);
   };
 
   // Show floating buttons on hover or selection (not for ghost nodes)
@@ -280,6 +292,34 @@ const TDADNode: React.FC<NodeProps<TDADNodeData>> = ({ data, selected }) => {
             style={{ backgroundColor: barColors[testFixState] }}
             title="Test & Fix"
           />
+        </div>
+      )}
+
+      {/* Delete Confirmation Dialog */}
+      {showDeleteConfirm && (
+        <div className="tdad-node__delete-confirm-overlay" onClick={handleCancelDelete}>
+          <div className="tdad-node__delete-confirm" onClick={e => e.stopPropagation()}>
+            <div className="tdad-node__delete-confirm-title">
+              Delete "{node.title}"?
+            </div>
+            <div className="tdad-node__delete-confirm-message">
+              This will delete the node and all its associated files.
+            </div>
+            <div className="tdad-node__delete-confirm-buttons">
+              <button
+                className="tdad-node__delete-confirm-btn tdad-node__delete-confirm-btn--cancel"
+                onClick={handleCancelDelete}
+              >
+                Cancel
+              </button>
+              <button
+                className="tdad-node__delete-confirm-btn tdad-node__delete-confirm-btn--delete"
+                onClick={handleConfirmDelete}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

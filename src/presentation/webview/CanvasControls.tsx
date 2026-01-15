@@ -104,7 +104,7 @@ const CanvasControls: React.FC<CanvasControlsProps> = ({
           className="canvas-controls__btn canvas-controls__btn--primary canvas-controls__btn--icon-only"
           title="Project Wizard"
         >
-          <span className="canvas-controls__icon">▶</span>
+          <span className="canvas-controls__icon">★</span>
         </button>
 
         <div className="canvas-controls__separator" />
