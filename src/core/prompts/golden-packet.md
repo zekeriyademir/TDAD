@@ -26,6 +26,7 @@
 - Test contradicts `.feature` spec
 - NEVER change expected values to match app behavior
 - Test/DB isolation issues
+- Test violates rules from `generate-tests.md` (e.g., uses xpath/css selectors, waitForTimeout, conditional assertions, textContent extraction before assertions, missing round-trip verification)
 
 **5. NEVER Guess, find root cause using Trace File:** The trace file (`.tdad/debug/trace-*.json`) contains everything you need:
 - `apiRequests`: All API calls with method, URL, status, request/response bodies
