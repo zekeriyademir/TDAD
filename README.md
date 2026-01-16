@@ -8,9 +8,11 @@
 
 It enforces a **Plan → Spec → Test → Fix** cycle where **runtime feedback** (not just text) guides your AI to deliver working software, not just snippets.
 
-**Key Features:** Local-first, Zero API calls, BYO-AI (Bring Your Own AI) and Free.
+**Key Features:** Local-first, Zero API calls, Use your own AI (Claude, ChatGPT, Cursor, etc.) and Free.
 
-**Note:** Add screenshot/demo GIF here showing the Canvas UI and 4-step workflow in action
+<p align="center">
+  <img src="media/workflow-fix.gif" alt="TDAD Demo - Test → Fix → Green" width="700">
+</p>
 
 **Quick Links:** [Installation](#installation) • [Getting Started](#getting-started) • [Features](#features) • [Contributing](#contributing) • [Community](#community)
 
@@ -122,6 +124,10 @@ Instead of generating code blindly, TDAD provides a visual canvas to plan and tr
 ### 2. The "Interactive Workflow" (The Core Experience)
 TDAD does not call OpenAI/Claude for code generation. Instead, it serves as a **Prompt Engineering Platform** with a 4-step linear pipeline.
 
+<p align="center">
+  <img src="media/workflow-bdd.gif" alt="TDAD Workflow - BDD Step" width="600">
+</p>
+
 **The Bottom Action Bar** displays when a feature node is selected, showing a strict TDD workflow:
 
 **Step 1: BDD** (Always available - the starting point)
@@ -158,7 +164,9 @@ TDAD does not call OpenAI/Claude for code generation. Instead, it serves as a **
 ### 3. The "Project Wizard" (Onboarding & Setup)
 We solve the "Blank Page Problem" with two distinct workflows accessible from the Welcome Overlay.
 
-> 📸 **GIF:** Show the Project Wizard: Clicking "Start New Project", selecting options, and seeing the Canvas populate with nodes.
+<p align="center">
+  <img src="media/new-project.gif" alt="TDAD Project Wizard" width="600">
+</p>
 
 **Option A: Start New Project** (3-step wizard)
 
@@ -210,7 +218,9 @@ When Feature B depends on Feature A, avoid duplicating logic. Instead, **import 
 ### 5. The "Golden Packet" (Fixing Tests)
 When a test fails, TDAD provides the "Golden Packet" to help the AI fix it.
 
-> 📸 **GIF:** Show a Red node -> Click "Fix" -> Paste Golden Packet into Cursor/Claude -> AI fixes code -> Click "Run" -> Node turns Green.
+<p align="center">
+  <img src="media/workflow-fix.gif" alt="TDAD Golden Packet - Fix Tests" width="600">
+</p>
 
 *   **The Problem:** To fix a test, the AI needs: The Test Code + The Error Message + The Gherkin + The Dependent Files + What ACTUALLY happened.
 *   **The Solution:** TDAD assembles a "Golden Packet" on the clipboard.
@@ -274,6 +284,10 @@ TDAD runs the loop.
 
 Auto-Pilot (aka "Lazy Mode") automates the repetitive loop of BDD → Test → Fix by orchestrating your CLI agents (Claude, Cursor, etc).
 
+<p align="center">
+  <img src="media/auto-pilot.gif" alt="TDAD Auto-Pilot Mode" width="600">
+</p>
+
 **Status:** Available Now (Free)
 
 **How it works:**
@@ -282,7 +296,7 @@ Auto-Pilot (aka "Lazy Mode") automates the repetitive loop of BDD → Test → F
 3. The agent implements the code and writes "DONE"
 4. TDAD runs the tests and loops until passing
 
-**Note:** You need your own API keys for the CLI agents (BYOK - Bring Your Own Key).
+**Note:** Auto-Pilot works with your own CLI agents (Claude Code, Aider, etc.). TDAD doesn't accept or store any API keys - you use your preferred agent with your own credentials and security policies.
 
 
 ---
@@ -407,8 +421,6 @@ npm run compile
 ## License
 
 TDAD is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for full details.
-
-**Note:** TDAD is **Open Source (MIT)**. The core interactive workflow (Canvas, Scaffolding, Golden Packet) is free. The "Auto-Pilot" automation layer is a premium feature to support the project's sustainability. Currently, it is in **Closed Beta**.
 
 ---
 
