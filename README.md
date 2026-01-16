@@ -218,10 +218,6 @@ When Feature B depends on Feature A, avoid duplicating logic. Instead, **import 
 ### 5. The "Golden Packet" (Fixing Tests)
 When a test fails, TDAD provides the "Golden Packet" to help the AI fix it.
 
-<p align="center">
-  <img src="media/workflow-fix.gif" alt="TDAD Golden Packet - Fix Tests" width="600">
-</p>
-
 *   **The Problem:** To fix a test, the AI needs: The Test Code + The Error Message + The Gherkin + The Dependent Files + What ACTUALLY happened.
 *   **The Solution:** TDAD assembles a "Golden Packet" on the clipboard.
 *   **Action:** User clicks **"4. Fix"**, pastes the Golden Packet into their AI agent, and the AI fixes the bug using the trace to pinpoint the exact error.
