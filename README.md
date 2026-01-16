@@ -4,11 +4,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**TDAD** (Test-Driven AI Development) upgrades your AI from a chaotic code generator into a disciplined engineer. local-first, and zero API calls—you control exactly what leaves your machine.
+**TDAD** (Test-Driven AI Development) is a **visual workflow engine** that upgrades your AI from a chaotic code generator into a disciplined engineer. 
 
-We all know the feeling: You ask for a feature, the AI generates 5 files, and... nothing works. The imports are wrong, the logic is hallucinated, and you spend the next hour debugging "magic" code.
+It enforces a **Plan → Spec → Test → Fix** cycle where **runtime feedback** (not just text) guides your AI to deliver working software, not just snippets.
 
-TDAD enforces a **Plan → Spec → Test → Fix** cycle where automated tests validate every line of code, ensuring your AI delivers working software, not just snippets.
+**Key Features:** Local-first, Zero API calls, BYO-AI (Bring Your Own AI) and Free.
 
 **Note:** Add screenshot/demo GIF here showing the Canvas UI and 4-step workflow in action
 
@@ -16,37 +16,25 @@ TDAD enforces a **Plan → Spec → Test → Fix** cycle where automated tests v
 
 ----
 
-## Why This Matters (The Real Value)
+## The Problem with AI Coding (And How We Fix It)
 
-Most AI coding tools fail because they lack **context** and **structure**. TDAD fixes this by enforcing a professional engineering workflow:
+Most AI coding tools fail because they lack **runtime feedback** and **engineering discipline**. TDAD fixes the 4 major flaws of AI development:
 
-### 1. Plan like a Project Manager (The Canvas)
-Just like [n8n](https://n8n.io/) manages data workflows, TDAD's **Canvas** manages your feature workflows.
-*   **Business Logic:** You provide the "Idea" or "Existing Codebase", and **TDAD generates the prompt** for the AI to build your entire business logic in Canvas.
-*   **Visual Dependencies:** See exactly how Feature A connects to Feature B (e.g., "Checkout" depends on "Login").
-*   **Logical Flow:** The graph represents the **business logic** and user flow, allowing you to visualize and manage your project's features and status.
+### 1. Problem: "Getting Lost in the Chat"
+*AI chats are linear and forgetful. As you build more features, you lose track of the big picture, what's actually finished, and how it all connects.*
+*   **The Solution (The Visual PM):** TDAD's **Canvas** is your AI Project Manager. It maps your entire product as a living flowchart, not a text list. You see exactly what to build next, which features are passing (Green), and which are broken (Red). It turns "chat chaos" into a disciplined delivery pipeline.
 
-### 2. Generate Requirements (BDD)
-Most AI code fails because the prompt was vague. Think of this as defining your **Jira Tickets** clearly with all the acceptance criterias before starting work.
-*   **AI-Driven Specs:** You don't write specs manually. TDAD generates a specialized prompt, and your AI agent writes the **Gherkin requirements** for you.
-*   **Clear Contract:** The AI knows exactly what to build before writing a single line of code.
-"
-### 3. Generate Automated Tests
-We generate the tests *before* the implementation.
-*   **TDD Automation:** TDAD scaffolds the files and guides the AI to write comprehensive Playwright tests derived directly from your requirements.
-*   **The Gatekeeper:** These tests serve as the objective judge, forcing the AI to fix its own code until it passes.
+### 2. Problem: The "Lazy Prompt" Effect
+*Most AI code fails because the prompt was vague. You shouldn't have to write paragraphs of context to get a simple feature.*
+*   **The Solution (Auto-Specs):** Think of this as defining your **Jira Tickets** perfectly before starting work. TDAD generates the prompt, and your AI writes the **Gherkin requirements** (BDD) first. The AI knows exactly *what* to build (the contract) before writing a single line of *how*.
 
-### 4. Implement & Fix (The Golden Packet)
-When a test fails, we don't let the AI guess. TDAD captures a **Golden Packet** containing:
-*   **Actual Execution Traces:** The exact line numbers where the code failed.
-*   **Network Requests:** Full capture of API payloads, headers, and response statuses.
-*   **Console Logs & Errors:** Browser warnings and uncaught exceptions.
-*   **DOM Snapshots:** The accessibility tree state at the moment of failure ("Crime Scene Photo").
-*   **Screenshots:** Visual capture of the page state at the moment of failure.
-*   **Scaffolded Files:** Paths to the exact `.feature`, `.action.js`, and `.test.js` files involved.
-*   **Dependency Context:** Signatures of upstream actions this feature depends on.
+### 3. Problem: The "Code Snippet" Trap
+*You ask for a feature, the AI generates 5 files, and... nothing works. The imports are wrong, and the logic is hallucinated.*
+*   **The Solution (Test-First):** We generate the tests *before* the implementation. These tests serve as the **Gatekeeper**, forcing the AI to fix its own code until it passes. We don't accept "looks good"—we only accept "green tests."
 
-This scientific context allows your AI agent to perform surgical fixes instantly, turning a 1-hour debugging session into a 1-minute fix.
+### 4. Problem: The Debugging Loop of Death
+*When code fails, you paste the error back to the AI. It guesses blindly, often breaking five other things in the process.*
+*   **The Solution (The Golden Packet):** When a test fails, TDAD captures a "Golden Packet"—a crime scene photo containing **Execution Traces**, **Network Requests**, **DOM Snapshots**, and **Screenshots**. The AI performs a surgical fix based on *reality*, not guesses.
 
 ### Privacy & Control
 *   **🔐 Privacy First:** TDAD does **not** call any AI APIs directly. No code leaves your machine unless you paste it yourself.
